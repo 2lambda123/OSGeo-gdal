@@ -1875,7 +1875,7 @@ def test_ogr_sql_sqlite_26():
         "Contains",
         "Overlaps",
     ]:
-        for (geomA_wkt, geomB_wkt) in [
+        for geomA_wkt, geomB_wkt in [
             (geom1_wkt, geom1_wkt),
             (geom1_wkt, geom2_wkt),
             (geom1_wkt, geom3_wkt),
@@ -1898,7 +1898,7 @@ def test_ogr_sql_sqlite_26():
             assert b_sql == b_geos, "fail with %s" % op_str
 
     for op_str in ["Intersection", "Difference", "Union", "SymDifference"]:
-        for (geomA_wkt, geomB_wkt) in [
+        for geomA_wkt, geomB_wkt in [
             (geom1_wkt, geom1_wkt),
             (geom1_wkt, geom2_wkt),
             (geom1_wkt, geom3_wkt),
@@ -2035,7 +2035,7 @@ def test_ogr_sql_sqlite_28():
         ds.ReleaseResultSet(sql_lyr)
 
     # Valid hstore syntax
-    for (sql, expected) in [
+    for sql, expected in [
         ("SELECT hstore_get_value('a=>b', 'a')", "b"),
     ]:
         sql_lyr = ds.ExecuteSQL(sql, dialect="SQLite")

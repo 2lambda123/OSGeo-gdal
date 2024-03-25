@@ -884,7 +884,7 @@ def test_ogr_factory_8():
         ),
         ("MULTIPOINT (2 5)", "POINT(2 5)", ogr.wkbPoint),
     ]
-    for (src_wkt, exp_wkt, target_type) in tests:
+    for src_wkt, exp_wkt, target_type in tests:
 
         src_geom = ogr.CreateGeometryFromWkt(src_wkt)
         with gdal.config_option("OGR_ARC_STEPSIZE", "45"):
@@ -940,7 +940,7 @@ def test_ogr_factory_failed_forceTo():
             "POLYGON M ((0 0 0,0 0 0,0 0 0,0 0 0,0 0 0))",
         ),
     ]
-    for (src_wkt, target_type, exp_wkt) in tests:
+    for src_wkt, target_type, exp_wkt in tests:
         src_geom = ogr.CreateGeometryFromWkt(src_wkt)
         dst_geom = ogr.ForceTo(src_geom, target_type)
 

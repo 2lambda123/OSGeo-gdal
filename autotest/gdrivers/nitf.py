@@ -3072,9 +3072,9 @@ def test_nitf_72():
     # Test loss of precision on coefficient lines
     src_ds = gdal.GetDriverByName("MEM").Create("", 1, 1)
     src_md = copy.copy(src_md_max_precision)
-    src_md[
-        "LINE_NUM_COEFF"
-    ] = "0 9.876543e-10 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9"
+    src_md["LINE_NUM_COEFF"] = (
+        "0 9.876543e-10 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9"
+    )
     src_ds.SetMetadata(src_md, "RPC")
 
     with gdal.quiet_errors():
@@ -3153,9 +3153,9 @@ def test_nitf_72():
     # Test out of rangeon coefficient lines
     src_ds = gdal.GetDriverByName("MEM").Create("", 1, 1)
     src_md = copy.copy(src_md_max_precision)
-    src_md[
-        "LINE_NUM_COEFF"
-    ] = "0 9.876543e10 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9"
+    src_md["LINE_NUM_COEFF"] = (
+        "0 9.876543e10 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9 0 9.876543e+9 9.876543e-9 -9.876543e+9 -9.876543e-9"
+    )
     src_ds.SetMetadata(src_md, "RPC")
 
     with gdal.quiet_errors():

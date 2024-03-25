@@ -42,6 +42,7 @@ from osgeo import gdal, osr
 
 pytestmark = pytest.mark.require_driver("ZARR")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -2875,9 +2876,11 @@ def test_zarr_write_interleave(dt, array_type):
                 ar.Write(
                     array.array(
                         array_type,
-                        [0, 2, 4]
-                        if dt != gdal.GDT_CFloat64
-                        else [0, 0.5, 2, 2.5, 4, 4.5],
+                        (
+                            [0, 2, 4]
+                            if dt != gdal.GDT_CFloat64
+                            else [0, 0.5, 2, 2.5, 4, 4.5]
+                        ),
                     ),
                     array_start_idx=[0, 0],
                     count=[3, 1],
@@ -2889,9 +2892,11 @@ def test_zarr_write_interleave(dt, array_type):
                 ar.Write(
                     array.array(
                         array_type,
-                        [1, 3, 5]
-                        if dt != gdal.GDT_CFloat64
-                        else [1, 1.5, 3, 3.5, 5, 5.5],
+                        (
+                            [1, 3, 5]
+                            if dt != gdal.GDT_CFloat64
+                            else [1, 1.5, 3, 3.5, 5, 5.5]
+                        ),
                     ),
                     array_start_idx=[0, 1],
                     count=[3, 1],
@@ -2909,9 +2914,11 @@ def test_zarr_write_interleave(dt, array_type):
         ar = rg.OpenMDArray(rg.GetMDArrayNames()[0])
         assert ar.Read() == array.array(
             array_type,
-            [0, 1, 2, 3, 4, 5]
-            if dt != gdal.GDT_CFloat64
-            else [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5],
+            (
+                [0, 1, 2, 3, 4, 5]
+                if dt != gdal.GDT_CFloat64
+                else [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5]
+            ),
         )
         if dt != gdal.GDT_CFloat64:
             assert ar.Read(

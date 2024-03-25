@@ -758,7 +758,7 @@ def test_ogr_openfilegdb_4():
         ("real > 1 AND real < 2", 0, None),
         ("real < 0", 0, None),
     ]
-    for (where_clause, count, start) in tests:
+    for where_clause, count, start in tests:
 
         lyr.SetAttributeFilter(where_clause)
         assert lyr.GetFeatureCount() == count, (where_clause, count)
@@ -941,7 +941,7 @@ def test_ogr_openfilegdb_7():
         ("select * from point where float > 0 order by id", None, None, 0),
     ]
 
-    for (sql, feat_count, first_fid, expected_optimized) in tests:
+    for sql, feat_count, first_fid, expected_optimized in tests:
         if expected_optimized is None:
             gdal.PushErrorHandler("CPLQuietErrorHandler")
         sql_lyr = ds.ExecuteSQL(sql)
@@ -1169,7 +1169,7 @@ def test_ogr_openfilegdb_10():
 
     else:
 
-        for (filename, offsets) in [
+        for filename, offsets in [
             (
                 "tmp/testopenfilegdb_fuzzed.gdb/a00000001.gdbtable",
                 [
@@ -1231,7 +1231,7 @@ def test_ogr_openfilegdb_10():
                     ds = None
                 unfuzz(backup)
 
-        for (filename, offsets) in [
+        for filename, offsets in [
             (
                 "tmp/testopenfilegdb_fuzzed.gdb/a00000004.gdbindexes",
                 [

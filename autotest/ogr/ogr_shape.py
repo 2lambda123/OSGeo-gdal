@@ -2308,9 +2308,14 @@ def ogr_shape_54_test_layer(ds, layer_index):
         "failed for layer %d" % layer_index
     )
     if (layer_index % 2) == 0:
-        assert feat.GetGeometryRef() is not None and feat.GetGeometryRef().ExportToWkt() == "POINT (%d %d)" % (
-            layer_index,
-            layer_index + 1,
+        assert (
+            feat.GetGeometryRef() is not None
+            and feat.GetGeometryRef().ExportToWkt()
+            == "POINT (%d %d)"
+            % (
+                layer_index,
+                layer_index + 1,
+            )
         ), (
             "failed for layer %d" % layer_index
         )

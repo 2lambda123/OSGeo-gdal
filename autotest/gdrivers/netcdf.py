@@ -46,6 +46,7 @@ from osgeo import gdal, ogr, osr
 
 pytestmark = pytest.mark.require_driver("netCDF")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -3662,6 +3663,7 @@ def test_netcdf_functions_2(filename, checksum, options, testfunction):
 
 ###############################################################################
 #  simple geometry tests
+
 
 #  basic tests
 def test_bad_cf1_8():

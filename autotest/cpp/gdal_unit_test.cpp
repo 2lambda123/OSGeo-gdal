@@ -198,8 +198,8 @@ int main(int argc, char *argv[])
     ::OGRRegisterAll();
 
     std::cout
-        << "GDAL C/C++ API tests"
-        << " (" << ::GDALVersionInfo("--version") << ")"
+        << "GDAL C/C++ API tests" << " (" << ::GDALVersionInfo("--version")
+        << ")"
         << "\n---------------------------------------------------------\n";
 
     argc = GDALGeneralCmdLineProcessor(argc, &argv, 0);

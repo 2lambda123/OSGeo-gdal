@@ -2968,9 +2968,9 @@ class GDAL2Tiles(object):
             args["googlemapsurl"] += "?key=" + self.options.googlekey
             args["googlemapsurl_hint"] = ""
         else:
-            args[
-                "googlemapsurl_hint"
-            ] = "<!-- Replace URL below with https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_KEY_HERE -->"
+            args["googlemapsurl_hint"] = (
+                "<!-- Replace URL below with https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_KEY_HERE -->"
+            )
         args["south"], args["west"], args["north"], args["east"] = self.swne
         args["minzoom"] = self.tminz
         args["maxzoom"] = self.tmaxz

@@ -41,6 +41,7 @@ from .vsis3 import general_s3_options
 
 pytestmark = pytest.mark.require_curl()
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():

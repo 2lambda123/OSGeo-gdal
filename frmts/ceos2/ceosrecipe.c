@@ -686,7 +686,7 @@ void GetCeosSARImageDesc(CeosSARVolume_t *volume)
 {
     Link_t *l_link;
     RecipeFunctionData_t *rec_data;
-    int (*function)(CeosSARVolume_t * volume, const void *token);
+    int (*function)(CeosSARVolume_t *volume, const void *token);
 
     if (RecipeFunctions == NULL)
     {

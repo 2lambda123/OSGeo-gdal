@@ -1717,7 +1717,7 @@ def test_gml_invalid_geoms():
         ),
     ]
 
-    for (gml, expected_wkt) in gml_expected_wkt_list:
+    for gml, expected_wkt in gml_expected_wkt_list:
         with gdal.quiet_errors():
             # print gml
             geom = ogr.CreateGeometryFromGML(gml)
@@ -2139,7 +2139,7 @@ def test_gml_Coordinates_ts_cs_decimal():
         ),
     ]
 
-    for (gml, expected_wkt) in gml_expected_wkt_list:
+    for gml, expected_wkt in gml_expected_wkt_list:
         geom = ogr.CreateGeometryFromGML(gml)
         wkt = geom.ExportToWkt()
         if expected_wkt is None:
@@ -2194,7 +2194,7 @@ def test_gml_with_xml_header_and_comments():
         ),
     ]
 
-    for (gml, expected_wkt) in gml_expected_wkt_list:
+    for gml, expected_wkt in gml_expected_wkt_list:
         geom = ogr.CreateGeometryFromGML(gml)
         wkt = geom.ExportToWkt()
         if expected_wkt is None:

@@ -37,6 +37,7 @@ from osgeo import ogr, osr
 
 pytestmark = pytest.mark.require_driver("Selafin")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():

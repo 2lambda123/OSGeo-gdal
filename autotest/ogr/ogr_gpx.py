@@ -37,6 +37,7 @@ from osgeo import gdal, ogr
 
 pytestmark = pytest.mark.require_driver("GPX")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def startup_and_cleanup():

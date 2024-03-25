@@ -1235,7 +1235,6 @@ def test_tiff_srs_epsg_2193_override():
 
 
 def test_tiff_srs_projected_GTCitationGeoKey_with_underscore_and_GeogTOWGS84GeoKey():
-
     """Test bugfix for https://lists.osgeo.org/pipermail/gdal-dev/2023-March/057011.html"""
 
     ds = gdal.Open(
@@ -1250,7 +1249,6 @@ def test_tiff_srs_projected_GTCitationGeoKey_with_underscore_and_GeogTOWGS84GeoK
 
 
 def test_tiff_srs_write_compound_with_non_epsg_vert_crs():
-
     """Test bugfix for https://github.com/OSGeo/gdal/issues/7833"""
 
     filename = "/vsimem/test_tiff_srs_write_compound_with_non_epsg_vert_crs.tif"
@@ -1299,7 +1297,6 @@ def test_tiff_srs_write_compound_with_non_epsg_vert_crs():
 
 
 def test_tiff_srs_read_compound_with_VerticalCitationGeoKey_only():
-
     """Test bugfix for https://github.com/OSGeo/gdal/issues/7833"""
 
     ds = gdal.Open("data/gtiff/compound_with_VerticalCitationGeoKey_only.tif")
@@ -1324,7 +1321,6 @@ def test_tiff_srs_read_compound_with_VerticalCitationGeoKey_only():
     7, 2
 )  # not necessarily the minimum version, but 9707 doesn't exist in PROJ 6.x
 def test_tiff_srs_read_compound_with_EPSG_code(code):
-
     """Test bugfix for https://github.com/OSGeo/gdal/issues/7982"""
 
     filename = "/vsimem/test_tiff_srs_read_compound_with_EPSG_code.tif"
@@ -1345,7 +1341,6 @@ def test_tiff_srs_read_compound_with_EPSG_code(code):
 
 
 def test_tiff_srs_read_compound_without_EPSG_code():
-
     """Test case where identification of code for CompoundCRS (added for
     bugfix of https://github.com/OSGeo/gdal/issues/7982) doesn't trigger"""
 

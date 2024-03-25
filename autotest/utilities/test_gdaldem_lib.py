@@ -641,7 +641,7 @@ def test_gdaldem_lib_aspect_ZevenbergenThorne():
 
 def test_gdaldem_lib_nodata():
 
-    for (value, typ) in [
+    for value, typ in [
         (0, gdal.GDT_Byte),
         (1, gdal.GDT_Byte),
         (255, gdal.GDT_Byte),

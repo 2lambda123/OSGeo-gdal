@@ -1257,7 +1257,7 @@ def test_gdal_translate_ovr_rpc():
 
 def test_gdal_translate_lib_raster_uint16_ct_0_255_range():
 
-    for (r, g, b, a) in [
+    for r, g, b, a in [
         (255 + 1, 255, 255, 255),
         (255, 255 + 1, 255, 255),
         (255, 255, 255 + 1, 255),

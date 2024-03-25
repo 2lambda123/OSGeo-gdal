@@ -39,6 +39,7 @@ from osgeo import gdal, ogr, osr
 
 pytestmark = pytest.mark.require_driver("PDS4")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -718,7 +719,7 @@ def test_pds4_10():
 def test_pds4_11():
 
     filename = "/vsimem/out.xml"
-    for (dt, data) in [
+    for dt, data in [
         (gdal.GDT_Byte, struct.pack("B", 255)),
         (gdal.GDT_Int8, struct.pack("b", -128)),
         (gdal.GDT_UInt16, struct.pack("H", 65535)),

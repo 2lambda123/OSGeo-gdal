@@ -1269,7 +1269,7 @@ void L1BDataset::FetchMetadataNOAA15()
             VSIFPrintfL(fpCSV, "%d,%d,%d,%d,%d,%d,%d,%d,%d,", nScanlineNumber,
                         nBlockYOff, (int)timeCode.GetYear(),
                         (int)timeCode.GetDay(), (int)timeCode.GetMillisecond(),
-                        i16, (n16 >> 15) & 1, (n16 >> 14) & 1, (n16)&3));
+                        i16, (n16 >> 15) & 1, (n16 >> 14) & 1, (n16) & 3));
 
         n32 = GetUInt32(pabyRecordHeader + 24);
         CPL_IGNORE_RET_VAL(VSIFPrintfL(
@@ -2508,7 +2508,7 @@ static double LagrangeInterpol(const double x[], const double y[], double x0,
 #define END_INTERP_ORDER 5 /* Ensure this is an odd number, 5 is suitable.*/
 
 /* Convert number of known point to its index in full array */
-#define IDX(N) ((N)*knownStep + knownFirst)
+#define IDX(N) ((N) * knownStep + knownFirst)
 
 static void L1BInterpol(
     double vals[], int numKnown, /* Number of known points (typically 51) */

@@ -39,6 +39,7 @@ from osgeo import gdal
 
 pytestmark = pytest.mark.require_driver("PNG")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():

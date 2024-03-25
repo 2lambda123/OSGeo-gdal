@@ -554,7 +554,7 @@ def test_jsonfg_read_time(time_values, expected_fields, expected_values_array):
     assert ds.GetDriver().GetDescription() == "JSONFG"
     lyr = ds.GetLayer(0)
     lyr_defn = lyr.GetLayerDefn()
-    for (field_name, field_type) in expected_fields:
+    for field_name, field_type in expected_fields:
         idx = lyr_defn.GetFieldIndex(field_name)
         assert idx >= 0, field_name
         assert lyr_defn.GetFieldDefn(idx).GetType() == field_type

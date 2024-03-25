@@ -395,7 +395,7 @@ CPLErr FITRasterBand::IReadBlock(int nBlockXOff, int nBlockYOff, void *pImage)
                              "bytesPerComponent %lu",
                              bytesPerComponent);
             }  // switch
-        }      // Scan left/right first.
+        }  // Scan left/right first.
         else
         {
             // Scan up/down first.
@@ -479,8 +479,8 @@ CPLErr FITRasterBand::IReadBlock(int nBlockXOff, int nBlockYOff, void *pImage)
                              "bytesPerComponent %lu",
                              bytesPerComponent);
             }  // switch
-        }      // Scan up/down first.
-    }          // !fastpath
+        }  // Scan up/down first.
+    }  // !fastpath
     return CE_None;
 }
 
@@ -1300,7 +1300,7 @@ static GDALDataset *FITCreateCopy(const char *pszFilename, GDALDataset *poSrcDS,
                              "FIT write - unsupported bytesPerPixel %d",
                              nDTSize);
             }  // switch
-#endif         // swapping
+#endif  // swapping
 
             if (VSIFWriteL(output.data(), 1, pageBytes, fpImage) != pageBytes)
             {

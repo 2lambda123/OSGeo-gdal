@@ -2199,6 +2199,7 @@ def hexify_double(val):
 ###############################################################################
 # Test coordinates values are preserved for identity transformations
 
+
 # The x value is such that x * k * (1/k) != x with k the common factor used in degrees unit definition
 # If the coordinates are converted to radians and back to degrees the value of x will be altered
 @pytest.mark.parametrize("x,y,srid", [(float.fromhex("0x1.5EB3ED959A307p6"), 0, 4326)])
