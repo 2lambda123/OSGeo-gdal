@@ -90,7 +90,8 @@ typedef enum
  */
 #define TAB_REGION_PLINE_REQUIRES_V800(numSegments, numVerticesTotal)          \
     ((numSegments) > TAB_REGION_PLINE_450_MAX_SEGMENTS ||                      \
-     ((numSegments)*3 + numVerticesTotal) > TAB_REGION_PLINE_450_MAX_VERTICES)
+     ((numSegments) * 3 + numVerticesTotal) >                                  \
+         TAB_REGION_PLINE_450_MAX_VERTICES)
 
 /*---------------------------------------------------------------------
  * Codes for the known MapInfo Geometry types

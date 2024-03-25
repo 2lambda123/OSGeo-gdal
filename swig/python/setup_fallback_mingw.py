@@ -80,6 +80,7 @@ libraries = ["gdal"]
 # Helper Functions
 # ---------------------------------------------------------------------------
 
+
 # Function to find numpy's include directory
 def get_numpy_include():
     if HAVE_NUMPY:

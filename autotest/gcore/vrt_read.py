@@ -2073,7 +2073,6 @@ def test_vrt_check_dont_open_unneeded_source_with_complex_source_nodata():
 
 
 def test_vrt_nodata_and_implicit_ovr_recursion_issue():
-
     """Tests scenario https://github.com/OSGeo/gdal/issues/4620#issuecomment-938636360"""
 
     vrt = """<VRTDataset rasterXSize="20" rasterYSize="20">
@@ -2095,7 +2094,6 @@ def test_vrt_nodata_and_implicit_ovr_recursion_issue():
 
 
 def test_vrt_statistics_and_implicit_ovr_recursion_issue():
-
     """Tests scenario https://github.com/OSGeo/gdal/issues/4661"""
 
     gdal.Translate("/vsimem/test.tif", "data/uint16.tif", width=2048)

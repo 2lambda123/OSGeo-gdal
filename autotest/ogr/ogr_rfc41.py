@@ -39,6 +39,7 @@ from osgeo import gdal, ogr, osr
 require_ogr_sql_sqlite
 # to make pyflakes happy
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -586,7 +587,7 @@ def test_ogr_rfc41_6():
         ),
     ]
 
-    for (sql, error_msg) in wrong_sql_list:
+    for sql, error_msg in wrong_sql_list:
         gdal.ErrorReset()
         with gdal.quiet_errors():
             sql_lyr = ds.ExecuteSQL(sql)

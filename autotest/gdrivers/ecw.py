@@ -1451,7 +1451,7 @@ def test_ecw_40():
     ]
 
     got_md = ds.GetMetadata()
-    for (key, value) in expected_md:
+    for key, value in expected_md:
         assert key in got_md and got_md[key] == value
 
     expected_cs_list = [28760, 59071, 54087, 22499]
@@ -1806,9 +1806,9 @@ def test_ecw_42(tmp_path):
     md = {}
     md["FILE_METADATA_CLASSIFICATION"] = "FILE_METADATA_CLASSIFICATION"
     md["FILE_METADATA_ACQUISITION_DATE"] = "2013-04-04"
-    md[
+    md["FILE_METADATA_ACQUISITION_SENSOR_NAME"] = (
         "FILE_METADATA_ACQUISITION_SENSOR_NAME"
-    ] = "FILE_METADATA_ACQUISITION_SENSOR_NAME"
+    )
     md["FILE_METADATA_COMPRESSION_SOFTWARE"] = "FILE_METADATA_COMPRESSION_SOFTWARE"
     md["FILE_METADATA_AUTHOR"] = "FILE_METADATA_AUTHOR"
     md["FILE_METADATA_COPYRIGHT"] = "FILE_METADATA_COPYRIGHT"
@@ -1943,7 +1943,7 @@ def test_ecw_44():
     ]
 
     got_md = ds.GetMetadata("JPEG2000")
-    for (key, value) in expected_md:
+    for key, value in expected_md:
         assert key in got_md and got_md[key] == value
 
 

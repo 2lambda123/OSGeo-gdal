@@ -253,7 +253,7 @@ GDALDataType CPL_STDCALL GDALFindDataType(int nBits, int bSigned, int bFloating,
     {
         nBits = std::max(nBits, !bSigned ? 32 : 16);
     }  // we don't have complex unsigned data types, so for a complex uint16,
-       // promote to complex int32
+    // promote to complex int32
     if (bFloating)
     {
         nBits = std::max(nBits, 32);

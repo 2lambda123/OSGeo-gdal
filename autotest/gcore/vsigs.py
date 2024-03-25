@@ -39,6 +39,7 @@ from osgeo import gdal
 
 pytestmark = pytest.mark.require_curl()
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -247,9 +248,11 @@ def test_vsigs_2(gs_test_config, webserver_port, use_config_options):
         "GS_ACCESS_KEY_ID": "GS_ACCESS_KEY_ID",
         "CPL_GS_TIMESTAMP": "my_timestamp",
     }
-    with gdaltest.config_options(
-        options, thread_local=False
-    ) if use_config_options else gdaltest.credentials("/vsigs/", options):
+    with (
+        gdaltest.config_options(options, thread_local=False)
+        if use_config_options
+        else gdaltest.credentials("/vsigs/", options)
+    ):
 
         signed_url = gdal.GetSignedURL(
             "/vsigs/gs_fake_bucket/resource", ["START_DATE=20180212T123456Z"]
@@ -926,9 +929,11 @@ gwE6fxOLyJDxuWRf
         for i in range(2):
 
             with gdaltest.config_options(
-                {"GS_OAUTH2_PRIVATE_KEY": key}
-                if i == 0
-                else {"GS_OAUTH2_PRIVATE_KEY_FILE": "/vsimem/pkey"},
+                (
+                    {"GS_OAUTH2_PRIVATE_KEY": key}
+                    if i == 0
+                    else {"GS_OAUTH2_PRIVATE_KEY_FILE": "/vsimem/pkey"}
+                ),
                 thread_local=False,
             ):
 

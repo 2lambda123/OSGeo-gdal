@@ -46,6 +46,7 @@ from osgeo import gdal, ogr, osr
 
 pytestmark = pytest.mark.require_driver("GPKG")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -960,7 +961,7 @@ def test_ogr_gpkg_15(gpkg_ds):
     assert feat.IsFieldNull(6)
     gpkg_ds.ReleaseResultSet(sql_lyr)
 
-    for (expected_type, actual_type, expected_result) in [
+    for expected_type, actual_type, expected_result in [
         ("POINT", "POINT", 1),
         ("LINESTRING", "POINT", 0),
         ("GEOMETRY", "POINT", 1),
@@ -987,7 +988,7 @@ def test_ogr_gpkg_15(gpkg_ds):
     feat = ogr.Feature(lyr.GetLayerDefn())
     lyr.CreateFeature(feat)
 
-    for (sql, expected_result) in [
+    for sql, expected_result in [
         ("SELECT HasSpatialIndex('point-with-spi-and-dashes', 'geom')", 1),
         ("SELECT DisableSpatialIndex('point-with-spi-and-dashes', 'geom')", 1),
         ("SELECT HasSpatialIndex('point-with-spi-and-dashes', 'geom')", 0),
@@ -8794,9 +8795,11 @@ def test_ogr_gpkg_background_rtree_build(
     gdal.ErrorReset()
     with gdaltest.config_option(
         "OGR_GPKG_MAX_RAM_USAGE_RTREE",
-        str(OGR_GPKG_MAX_RAM_USAGE_RTREE)
-        if OGR_GPKG_MAX_RAM_USAGE_RTREE is not None
-        else None,
+        (
+            str(OGR_GPKG_MAX_RAM_USAGE_RTREE)
+            if OGR_GPKG_MAX_RAM_USAGE_RTREE is not None
+            else None
+        ),
         thread_local=False,
     ):
         ds = gdaltest.gpkg_dr.CreateDataSource(filename)

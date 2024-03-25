@@ -1481,7 +1481,7 @@ def test_grib_grib2_write_data_encodings():
 
     tests += [[all_nodata_ds, ["DATA_ENCODING=COMPLEX_PACKING"], 0, GS5_CMPLX]]
 
-    for (filename, options, expected_cs, expected_section5_template_number) in tests:
+    for filename, options, expected_cs, expected_section5_template_number in tests:
         tmpfilename = "/vsimem/out.grb2"
         gdal.ErrorReset()
         gdal.Translate(tmpfilename, filename, format="GRIB", creationOptions=options)
@@ -1691,7 +1691,7 @@ def test_grib_grib2_write_data_encodings_warnings_and_errors():
             4672,
         ]
     ]
-    for (filename, options, expected_cs) in tests:
+    for filename, options, expected_cs in tests:
         tmpfilename = "/vsimem/out.grb2"
         src_ds = gdal.Open(filename)
         gdal.ErrorReset()
@@ -1774,7 +1774,7 @@ def test_grib_grib2_write_data_encodings_warnings_and_errors():
 
 def test_grib_grib2_write_temperatures():
 
-    for (src_type, data_encoding, input_unit) in [
+    for src_type, data_encoding, input_unit in [
         (gdal.GDT_Float32, "IEEE_FLOATING_POINT", None),
         (gdal.GDT_Float32, "IEEE_FLOATING_POINT", "C"),
         (gdal.GDT_Float32, "IEEE_FLOATING_POINT", "K"),

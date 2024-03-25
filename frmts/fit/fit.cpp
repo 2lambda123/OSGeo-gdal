@@ -202,7 +202,7 @@ int fitGetColorModel(GDALColorInterp colorInterp, int nBands)
                 case 4:
                     return 5;  // iflRGBA - full color with transparency (alpha
                                // channel)
-            }                  // switch
+            }  // switch
 
             CPLError(CE_Failure, CPLE_NotSupported,
                      "FIT write - unrecognized colorInterp %i and "

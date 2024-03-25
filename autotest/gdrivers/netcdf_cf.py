@@ -345,6 +345,7 @@ def netcdf_cfproj_test_cf(proj, projNc) -> None:
 # Netcdf CF Tests
 ###############################################################################
 
+
 ###############################################################################
 # test copy and CF compliance for lat/lon (no datum, no GEOGCS) file, tif->nc->tif
 def test_netcdf_cf_1(netcdf_setup):  # noqa

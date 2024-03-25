@@ -37,6 +37,7 @@ from osgeo import gdal, osr
 
 pytestmark = pytest.mark.require_driver("MRF")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():

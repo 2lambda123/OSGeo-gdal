@@ -1269,7 +1269,7 @@ def test_ogr_sql_44(data_ds):
             assert not f.IsFieldSetAndNotNull(0), sql
 
     # Valid hstore syntax
-    for (sql, expected) in [
+    for sql, expected in [
         ("SELECT hstore_get_value('a=>b', 'a') FROM poly", "b"),
         ("SELECT hstore_get_value(' a => b ', 'a') FROM poly", "b"),
         ("SELECT hstore_get_value('\"a\"=>b', 'a') FROM poly", "b"),
@@ -1586,6 +1586,7 @@ def test_ogr_sql_min_max_string_field():
 
 ##############################################################################
 # Test SELECT * EXCEPT
+
 
 # Test some error cases. Some of these could potentially be tolerated
 # in the future.

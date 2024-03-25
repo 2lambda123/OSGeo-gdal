@@ -46,6 +46,7 @@ from osgeo import gdal, ogr, osr
 
 pytestmark = pytest.mark.require_driver("WFS")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -2499,7 +2500,10 @@ xsi:schemaLocation="http://foo /vsimem/wfs_endpoint?SERVICE=WFS&amp;VERSION=1.1.
         f = lyr.GetNextFeature()
         assert f is not None
 
-    with gdaltest.tempfile(three_intersects_request, content,), ds.ExecuteSQL(
+    with gdaltest.tempfile(
+        three_intersects_request,
+        content,
+    ), ds.ExecuteSQL(
         "SELECT * FROM my_layer WHERE ST_Intersects(shape, ST_GeomFromText('POLYGON((1.5 48.5,2.5 49.5,2.5 49.5,2.5 48.5,1.5 48.5)))')) OR "
         + "ST_Intersects(shape, ST_GeomFromText('POLYGON((1.5 48.5,2.5 49.5,2.5 49.5,2.5 48.5,1.5 48.5)))', 4326)) OR "
         + "ST_Intersects(shape, ST_GeomFromText('POLYGON((1.5 48.5,2.5 49.5,2.5 49.5,2.5 48.5,1.5 48.5)))', 'EPSG:4326'))"

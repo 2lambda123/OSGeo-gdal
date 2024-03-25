@@ -70,6 +70,7 @@ pytestmark = [
     ),
 ]
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def startup_and_cleanup():
@@ -1050,7 +1051,7 @@ def test_jp2lura_28():
         (["CODEBLOCK_WIDTH=32", "CODEBLOCK_HEIGHT=32"], 32, 32, False),
     ]
 
-    for (options, expected_cbkw, expected_cbkh, warning_expected) in tests:
+    for options, expected_cbkw, expected_cbkh, warning_expected in tests:
         gdal.ErrorReset()
         with gdal.quiet_errors():
             out_ds = gdaltest.jp2lura_drv.CreateCopy(
@@ -2221,7 +2222,7 @@ def test_jp2lura_52():
         [0, gdal.GDT_UInt32, "I"],
         [2**28 - 1, gdal.GDT_UInt32, "I"],
     ]
-    for (val, dt, fmt) in tests:
+    for val, dt, fmt in tests:
 
         src_ds = gdal.GetDriverByName("MEM").Create("", 10, 10, 1, dt)
         src_ds.GetRasterBand(1).Fill(val)

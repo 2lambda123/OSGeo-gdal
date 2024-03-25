@@ -833,7 +833,7 @@ def test_ogr_tiledb_compression():
     lyr = ds.CreateLayer(
         "test", options=["BOUNDS=-1e4,-1e4,1e4,1e4", "COMPRESSION=ZSTD"]
     )
-    for (typ, subtype) in [
+    for typ, subtype in [
         (ogr.OFTInteger, ogr.OFSTNone),
         (ogr.OFTInteger, ogr.OFSTBoolean),
         (ogr.OFTInteger, ogr.OFSTInt16),

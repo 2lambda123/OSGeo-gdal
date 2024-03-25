@@ -38,6 +38,7 @@ from osgeo import gdal, ogr, osr
 
 pytestmark = pytest.mark.require_driver("OGR_VRT")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():

@@ -1194,8 +1194,8 @@ def Usage():
         + " -skipfailures: skip features or layers that fail to convert\n"
         + " -gt n: group n features per transaction (default 200)\n"
         + " -spat xmin ymin xmax ymax: spatial query extents\n"
-        + " -simplify tolerance: distance tolerance for simplification.\n"
-        +  # //" -segmentize max_dist: maximum distance between 2 nodes.\n" + \
+        + " -simplify tolerance: distance tolerance for simplification.\n"  # //" -segmentize max_dist: maximum distance between 2 nodes.\n" + \
+        +
         # //"                       Used to create intermediate points\n" + \
         " -dsco NAME=VALUE: Dataset creation option (format specific)\n"
         + " -lco  NAME=VALUE: Layer creation option (format specific)\n"
