@@ -416,7 +416,7 @@ def test_metadata_openoptionlist(driver_name):
     if openoptionlist_xml is not None and len(openoptionlist_xml) > 0:
         # do not fail
         try:
-            parser = etree.XMLParser(schema=schema)
+            parser = etree.XMLParser(schema=schema, resolve_entities=False)
             etree.fromstring(openoptionlist_xml, parser)
         except Exception:
             print(openoptionlist_xml)
@@ -435,7 +435,7 @@ def test_metadata_creationoptionslist(driver_name):
     if creationoptionslist_xml is not None and len(creationoptionslist_xml) > 0:
         # do not fail
         try:
-            parser = etree.XMLParser(schema=schema)
+            parser = etree.XMLParser(schema=schema, resolve_entities=False)
             etree.fromstring(creationoptionslist_xml, parser)
         except Exception:
             print(creationoptionslist_xml)
@@ -454,7 +454,7 @@ def test_metadata_layer_creationoptionslist(driver_name):
     if creationoptionslist_xml is not None and len(creationoptionslist_xml) > 0:
         # do not fail
         try:
-            parser = etree.XMLParser(schema=schema)
+            parser = etree.XMLParser(schema=schema, resolve_entities=False)
             etree.fromstring(creationoptionslist_xml, parser)
         except Exception:
             print(creationoptionslist_xml)
@@ -473,7 +473,7 @@ def test_metadata_multidim_array_creationoptionslist(driver_name):
     if xml is not None and len(xml) > 0:
         # do not fail
         try:
-            parser = etree.XMLParser(schema=schema)
+            parser = etree.XMLParser(schema=schema, resolve_entities=False)
             etree.fromstring(xml, parser)
         except Exception:
             print(xml)
@@ -492,7 +492,7 @@ def test_metadata_multidim_attribute_creationoptionslist(driver_name):
     if xml is not None and len(xml) > 0:
         # do not fail
         try:
-            parser = etree.XMLParser(schema=schema)
+            parser = etree.XMLParser(schema=schema, resolve_entities=False)
             etree.fromstring(xml, parser)
         except Exception:
             print(xml)
@@ -511,7 +511,7 @@ def test_metadata_multidim_dataset_creationoptionslist(driver_name):
     if xml is not None and len(xml) > 0:
         # do not fail
         try:
-            parser = etree.XMLParser(schema=schema)
+            parser = etree.XMLParser(schema=schema, resolve_entities=False)
             etree.fromstring(xml, parser)
         except Exception:
             print(xml)
@@ -530,7 +530,7 @@ def test_metadata_multidim_dimension_creationoptionslist(driver_name):
     if xml is not None and len(xml) > 0:
         # do not fail
         try:
-            parser = etree.XMLParser(schema=schema)
+            parser = etree.XMLParser(schema=schema, resolve_entities=False)
             etree.fromstring(xml, parser)
         except Exception:
             print(xml)
