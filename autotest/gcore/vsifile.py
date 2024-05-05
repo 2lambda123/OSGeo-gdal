@@ -34,11 +34,11 @@ import sys
 import time
 
 import gdaltest
+import lxml.etree
 import pytest
 from lxml import etree
 
 from osgeo import gdal
-import lxml.etree
 
 
 ###############################################################################
@@ -722,7 +722,9 @@ def test_vsifile_19():
         # Check that the options is XML correct
         if options is not None:
             try:
-                etree.fromstring(options, parser=lxml.etree.XMLParser(resolve_entities=False))
+                etree.fromstring(
+                    options, parser=lxml.etree.XMLParser(resolve_entities=False)
+                )
             except Exception:
                 assert False, (prefix, options)
 
