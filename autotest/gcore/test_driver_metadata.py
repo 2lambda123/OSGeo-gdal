@@ -34,6 +34,7 @@ import pytest
 from lxml import etree
 
 from osgeo import gdal
+import lxml.etree
 
 # For unknown reason on mingw64 CI, this now crashes
 # on File "D:/a/gdal/gdal/build/autotest/gcore/test_driver_metadata.py", line 396 in test_metadata_openoptionlist
@@ -417,7 +418,7 @@ def test_metadata_openoptionlist(driver_name):
         # do not fail
         try:
             parser = etree.XMLParser(schema=schema)
-            etree.fromstring(openoptionlist_xml, parser)
+            etree.fromstring(openoptionlist_xml, parser, parser=lxml.etree.XMLParser(resolve_entities=False))
         except Exception:
             print(openoptionlist_xml)
             raise
@@ -436,7 +437,7 @@ def test_metadata_creationoptionslist(driver_name):
         # do not fail
         try:
             parser = etree.XMLParser(schema=schema)
-            etree.fromstring(creationoptionslist_xml, parser)
+            etree.fromstring(creationoptionslist_xml, parser, parser=lxml.etree.XMLParser(resolve_entities=False))
         except Exception:
             print(creationoptionslist_xml)
             raise
@@ -455,7 +456,7 @@ def test_metadata_layer_creationoptionslist(driver_name):
         # do not fail
         try:
             parser = etree.XMLParser(schema=schema)
-            etree.fromstring(creationoptionslist_xml, parser)
+            etree.fromstring(creationoptionslist_xml, parser, parser=lxml.etree.XMLParser(resolve_entities=False))
         except Exception:
             print(creationoptionslist_xml)
             raise
@@ -474,7 +475,7 @@ def test_metadata_multidim_array_creationoptionslist(driver_name):
         # do not fail
         try:
             parser = etree.XMLParser(schema=schema)
-            etree.fromstring(xml, parser)
+            etree.fromstring(xml, parser, parser=lxml.etree.XMLParser(resolve_entities=False))
         except Exception:
             print(xml)
             raise
@@ -493,7 +494,7 @@ def test_metadata_multidim_attribute_creationoptionslist(driver_name):
         # do not fail
         try:
             parser = etree.XMLParser(schema=schema)
-            etree.fromstring(xml, parser)
+            etree.fromstring(xml, parser, parser=lxml.etree.XMLParser(resolve_entities=False))
         except Exception:
             print(xml)
             raise
@@ -512,7 +513,7 @@ def test_metadata_multidim_dataset_creationoptionslist(driver_name):
         # do not fail
         try:
             parser = etree.XMLParser(schema=schema)
-            etree.fromstring(xml, parser)
+            etree.fromstring(xml, parser, parser=lxml.etree.XMLParser(resolve_entities=False))
         except Exception:
             print(xml)
             raise
@@ -531,7 +532,7 @@ def test_metadata_multidim_dimension_creationoptionslist(driver_name):
         # do not fail
         try:
             parser = etree.XMLParser(schema=schema)
-            etree.fromstring(xml, parser)
+            etree.fromstring(xml, parser, parser=lxml.etree.XMLParser(resolve_entities=False))
         except Exception:
             print(xml)
             raise
@@ -552,7 +553,7 @@ def test_metadata_multidim_group_creationoptionslist(driver_name):
         try:
             # parser = etree.XMLParser(schema=schema)
             # etree.fromstring(xml, parser)
-            etree.fromstring(xml)
+            etree.fromstring(xml, parser=lxml.etree.XMLParser(resolve_entities=False))
         except Exception:
             print(xml)
             raise
