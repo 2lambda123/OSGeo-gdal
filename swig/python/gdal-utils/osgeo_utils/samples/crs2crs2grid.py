@@ -89,7 +89,7 @@ def read_grid_crs_to_crs(filename, shape):
 
     # report the file header defining the transformation
     for _ in range(5):
-        print(fd.readline().rstrip())
+        print(fd.readline(5_000_000).rstrip())
 
     points_found = 0
 

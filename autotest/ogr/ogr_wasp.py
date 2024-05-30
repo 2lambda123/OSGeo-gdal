@@ -88,7 +88,7 @@ def test_ogr_wasp_elevation_from_linestring_z():
 
     f = open("tmp.map")
     for i in range(4):
-        f.readline()
+        f.readline(5_000_000)
     i = 0
     j = 0
     for line in f:
@@ -150,7 +150,7 @@ def test_ogr_wasp_elevation_from_linestring_z_toler():
 
     f = open("tmp.map")
     for i in range(4):
-        f.readline()
+        f.readline(5_000_000)
     i = 0
     j = 0
     for line in f:
@@ -201,7 +201,7 @@ def test_ogr_wasp_elevation_from_linestring_field():
 
     f = open("tmp.map")
     for i in range(4):
-        f.readline()
+        f.readline(5_000_000)
     i = 0
     j = 0
     for line in f:
@@ -250,7 +250,7 @@ def test_ogr_wasp_roughness_from_linestring_fields():
 
     f = open("tmp.map")
     for i in range(4):
-        f.readline()
+        f.readline(5_000_000)
     i = 0
     j = 0
     for line in f:
@@ -307,7 +307,7 @@ def test_ogr_wasp_roughness_from_polygon_z():
 
     f = open("tmp.map")
     for i in range(4):
-        f.readline()
+        f.readline(5_000_000)
     i = 0
     j = 0
     res = set()
@@ -373,7 +373,7 @@ def test_ogr_wasp_roughness_from_polygon_field():
 
     f = open("tmp.map")
     for i in range(4):
-        f.readline()
+        f.readline(5_000_000)
     i = 0
     j = 0
     res = set()
@@ -437,7 +437,7 @@ def test_ogr_wasp_merge():
 
     f = open("tmp.map")
     for i in range(4):
-        f.readline()
+        f.readline(5_000_000)
     i = 0
     j = 0
     res = []

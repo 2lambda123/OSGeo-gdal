@@ -322,8 +322,8 @@ def test_aaigrid_12():
     aai = open("tmp/aaigrid.tmp")
     assert aai
     for _ in range(5):
-        aai.readline()
-    ndv = aai.readline().strip().lower()
+        aai.readline(5_000_000)
+    ndv = aai.readline(5_000_000).strip().lower()
     aai.close()
     gdal.GetDriverByName("AAIGRID").Delete("tmp/aaigrid.tmp")
     assert ndv.startswith("nodata_value")
@@ -345,8 +345,8 @@ def test_aaigrid_13():
     aai = open("tmp/aaigrid.tmp")
     assert aai
     for _ in range(5):
-        aai.readline()
-    ndv = aai.readline().strip().lower()
+        aai.readline(5_000_000)
+    ndv = aai.readline(5_000_000).strip().lower()
     aai.close()
     gdal.GetDriverByName("AAIGRID").Delete("tmp/aaigrid.tmp")
     assert ndv.startswith("nodata_value")

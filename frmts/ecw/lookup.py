@@ -83,7 +83,7 @@ for item in dict_list:
     # print 'loaded: %s' % item
 
 pfile = open(directory + "project.dat")
-pfile.readline()
+pfile.readline(5_000_000)
 
 for line in pfile.readlines():
     try:
@@ -175,7 +175,7 @@ for line in pfile.readlines():
 # Translate datums to their underlying spheroid information.
 
 pfile = open(directory + "datum.dat")
-pfile.readline()
+pfile.readline(5_000_000)
 
 for line in pfile.readlines():
     tokens = [token.strip() for token in line.strip().split(",")]

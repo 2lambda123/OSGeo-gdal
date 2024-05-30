@@ -177,7 +177,7 @@ def test_gdal2xyz_py_srcnodata_dstnodata(script_path):
 
     assert os.path.exists("tmp/out.xyz")
     with open("tmp/out.xyz", "rb") as f:
-        l = f.readline()
+        l = f.readline(5_000_000)
     os.unlink("tmp/out.xyz")
 
     assert l.startswith(b"-44.838604 -22.9343 1 2 3")

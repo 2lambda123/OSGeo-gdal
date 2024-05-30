@@ -840,16 +840,16 @@ def test_ogr_gml_21(tmp_path, frmt, base_filename):
     for ext in (".gml", ".xsd"):
         f1 = open(filename.with_suffix(ext), "rt")
         f2 = open("data/gml/" + f"{base_filename}{ext}", "rt")
-        line1 = f1.readline()
-        line2 = f2.readline()
+        line1 = f1.readline(5_000_000)
+        line2 = f2.readline(5_000_000)
         while line1 != "":
             line1 = line1.strip()
             line2 = line2.strip()
             if line1 != line2:
                 print(open(filename, "rt").read())
                 pytest.fail(f"{ext} file not identical to expected")
-            line1 = f1.readline()
-            line2 = f2.readline()
+            line1 = f1.readline(5_000_000)
+            line2 = f2.readline(5_000_000)
         f1.close()
         f2.close()
 
