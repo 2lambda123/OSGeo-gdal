@@ -103,9 +103,8 @@ def test_minixml_2():
 
 
 def test_minixml_3():
-
-    fp = open("data/doctype.xml", "r")
-    text = fp.read()
+    with open("data/doctype.xml", "r") as fp:
+        text = fp.read()
     tree = gdal.ParseXMLString(text)
 
     assert tree[0] == gdal.CXT_Element, "wrong node type."

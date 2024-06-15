@@ -226,8 +226,8 @@ def main(argv=sys.argv):
 
         elif arg == "-i":
             i = i + 1
-            in_file_list = open(argv[i])
-            names.extend(in_file_list.read().split())
+            with open(argv[i]) as in_file_list:
+                names.extend(in_file_list.read().split())
 
         elif arg == "-separate":
             separate = True

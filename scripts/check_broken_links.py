@@ -39,8 +39,8 @@ broken_set = {}
 
 
 def check(filename):
-    f = open(filename, "r")
-    lines = f.readlines()
+    with open(filename, "r") as f:
+        lines = f.readlines()
 
     for i, line in enumerate(lines):
         line = line.strip("\n")

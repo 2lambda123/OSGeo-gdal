@@ -81,118 +81,117 @@ dict_dict = {}
 for item in dict_list:
     dict_dict[item] = load_dict(directory + item + ".dat")
     # print 'loaded: %s' % item
+with open(directory + "project.dat") as pfile:
+    pfile.readline()
+    
+    for line in pfile.readlines():
+        try:
+            tokens = line.strip().split(",")
+            if len(tokens) < 3:
+                continue
 
-pfile = open(directory + "project.dat")
-pfile.readline()
+            tokens = [token.strip() for token in tokens]
 
-for line in pfile.readlines():
-    try:
-        tokens = line.strip().split(",")
-        if len(tokens) < 3:
-            continue
+            ident = tokens[0]
+            typ = tokens[1]
 
-        tokens = [token.strip() for token in tokens]
+            lsize = float(tokens[2])
+            lsize_str = tokens[2]
 
-        ident = tokens[0]
-        typ = tokens[1]
+            dline = dict_dict[typ][ident]
 
-        lsize = float(tokens[2])
-        lsize_str = tokens[2]
+            srs = osr.SpatialReference()
 
-        dline = dict_dict[typ][ident]
+            # Handle translation of the projection parameters.
 
-        srs = osr.SpatialReference()
+            if type != "utm":
+                fn = float(dline[1])
+                fe = float(dline[2])
 
-        # Handle translation of the projection parameters.
+            if type == "tranmerc":
+                srs.SetTM(r2d(dline[5]), r2d(dline[4]), float(dline[3]), fe, fn)
 
-        if type != "utm":
-            fn = float(dline[1])
-            fe = float(dline[2])
+            elif type == "mercator":
+                srs.SetMercator(r2d(dline[5]), r2d(dline[4]), float(dline[3]), fe, fn)
 
-        if type == "tranmerc":
-            srs.SetTM(r2d(dline[5]), r2d(dline[4]), float(dline[3]), fe, fn)
+            elif type == "grinten":
+                srs.SetVDG(r2d(dline[3]), fe, fn)
 
-        elif type == "mercator":
-            srs.SetMercator(r2d(dline[5]), r2d(dline[4]), float(dline[3]), fe, fn)
+            elif type == "cassini":
+                srs.SetCS(r2d(dline[4]), r2d(dline[3]), fe, fn)
 
-        elif type == "grinten":
-            srs.SetVDG(r2d(dline[3]), fe, fn)
+            elif type == "lambazea":
+                srs.SetLAEA(r2d(dline[5]), r2d(dline[4]), fe, fn)
 
-        elif type == "cassini":
-            srs.SetCS(r2d(dline[4]), r2d(dline[3]), fe, fn)
+            elif type == "lambert1":
+                srs.SetLCC1SP(r2d(dline[5]), r2d(dline[4]), float(dline[3]), fe, fn)
 
-        elif type == "lambazea":
-            srs.SetLAEA(r2d(dline[5]), r2d(dline[4]), fe, fn)
+            elif type == "lamcon2":
+                srs.SetLCC(
+                    r2d(dline[7]), r2d(dline[8]), r2d(dline[9]), r2d(dline[6]), fe, fn
+                )
 
-        elif type == "lambert1":
-            srs.SetLCC1SP(r2d(dline[5]), r2d(dline[4]), float(dline[3]), fe, fn)
+            # elif type == 'lambert2':
+            #   false_en = '+y_0=%.2f +x_0=%.2f' \
+            #   % (float(dline[12])*lsize, float(dline[13])*lsize)
+            #     result = '+proj=lcc %s +lat_0=%s +lon_0=%s +lat_1=%s +lat_2=%s' \
+            #           % (false_en, r2d(dline[3]), r2d(dline[4]),
+            #           r2d(dline[7]), r2d(dline[8]))
 
-        elif type == "lamcon2":
-            srs.SetLCC(
-                r2d(dline[7]), r2d(dline[8]), r2d(dline[9]), r2d(dline[6]), fe, fn
-            )
+            elif type == "albersea":
+                srs.SetACEA(
+                    r2d(dline[3]), r2d(dline[4]), r2d(dline[5]), r2d(dline[6]), fe, fn
+                )
 
-        # elif type == 'lambert2':
-        #   false_en = '+y_0=%.2f +x_0=%.2f' \
-        #   % (float(dline[12])*lsize, float(dline[13])*lsize)
-        #     result = '+proj=lcc %s +lat_0=%s +lon_0=%s +lat_1=%s +lat_2=%s' \
-        #           % (false_en, r2d(dline[3]), r2d(dline[4]),
-        #           r2d(dline[7]), r2d(dline[8]))
+            # elif type == 'obmerc_b':
+            #     result = '+proj=omerc %s +lat_0=%s +lonc=%s +alpha=%s +k=%s' \
+            #              % (false_en, r2d(dline[5]), r2d(dline[6]), r2d(dline[4]), dline[3])
 
-        elif type == "albersea":
-            srs.SetACEA(
-                r2d(dline[3]), r2d(dline[4]), r2d(dline[5]), r2d(dline[6]), fe, fn
-            )
+            elif type == "utm":
+                srs.SetUTM(int(dline[1]), dline[2] != "S")
 
-        # elif type == 'obmerc_b':
-        #     result = '+proj=omerc %s +lat_0=%s +lonc=%s +alpha=%s +k=%s' \
-        #              % (false_en, r2d(dline[5]), r2d(dline[6]), r2d(dline[4]), dline[3])
+            # Handle Units from projects.dat file.
+            if srs.IsProjected():
+                srs.SetAttrValue("PROJCS", ident)
+                if lsize_str == "0.30480061":
+                    srs.SetLinearUnits("US Foot", float(lsize_str))
+                elif lsize_str != "1.0":
+                    srs.SetLinearUnits("unnamed", float(lsize_str))
 
-        elif type == "utm":
-            srs.SetUTM(int(dline[1]), dline[2] != "S")
+            wkt = srs.ExportToWkt()
+            if wkt:
+                print("%s,%s" % (ident, srs.ExportToWkt()))
+            else:
+                print('%s,LOCAL_CS["%s - (unsupported)"]' % (ident, ident))
 
-        # Handle Units from projects.dat file.
-        if srs.IsProjected():
-            srs.SetAttrValue("PROJCS", ident)
-            if lsize_str == "0.30480061":
-                srs.SetLinearUnits("US Foot", float(lsize_str))
-            elif lsize_str != "1.0":
-                srs.SetLinearUnits("unnamed", float(lsize_str))
-
-        wkt = srs.ExportToWkt()
-        if wkt:
-            print("%s,%s" % (ident, srs.ExportToWkt()))
-        else:
+        except KeyError:
             print('%s,LOCAL_CS["%s - (unsupported)"]' % (ident, ident))
 
-    except KeyError:
-        print('%s,LOCAL_CS["%s - (unsupported)"]' % (ident, ident))
+        except Exception:
+            print("can't translate: ", line)
+            raise
+    
+    # Translate datums to their underlying spheroid information.
+    
+    pfile = open(directory + "datum.dat")
+    pfile.readline()
+    
+    for line in pfile.readlines():
+        tokens = [token.strip() for token in line.strip().split(",")]
 
-    except Exception:
-        print("can't translate: ", line)
-        raise
+        ident = tokens[0]
 
-# Translate datums to their underlying spheroid information.
+        sp_name = tokens[2]
+        dline = dict_dict["datum_sp"][ident]
+        srs = osr.SpatialReference()
 
-pfile = open(directory + "datum.dat")
-pfile.readline()
+        if ident == "WGS84":
+            srs.SetWellKnownGeogCS("WGS84")
+        elif ident == "NAD27":
+            srs.SetWellKnownGeogCS("NAD27")
+        elif ident == "NAD83":
+            srs.SetWellKnownGeogCS("NAD83")
+        else:
+            srs.SetGeogCS(tokens[1], ident, sp_name, float(dline[2]), float(dline[4]))
 
-for line in pfile.readlines():
-    tokens = [token.strip() for token in line.strip().split(",")]
-
-    ident = tokens[0]
-
-    sp_name = tokens[2]
-    dline = dict_dict["datum_sp"][ident]
-    srs = osr.SpatialReference()
-
-    if ident == "WGS84":
-        srs.SetWellKnownGeogCS("WGS84")
-    elif ident == "NAD27":
-        srs.SetWellKnownGeogCS("NAD27")
-    elif ident == "NAD83":
-        srs.SetWellKnownGeogCS("NAD83")
-    else:
-        srs.SetGeogCS(tokens[1], ident, sp_name, float(dline[2]), float(dline[4]))
-
-    print("%s,%s" % (ident, srs.ExportToWkt()))
+        print("%s,%s" % (ident, srs.ExportToWkt()))
