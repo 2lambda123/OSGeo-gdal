@@ -83,7 +83,7 @@ for item in dict_list:
     # print 'loaded: %s' % item
 with open(directory + "project.dat") as pfile:
     pfile.readline()
-    
+
     for line in pfile.readlines():
         try:
             tokens = line.strip().split(",")
@@ -170,12 +170,12 @@ with open(directory + "project.dat") as pfile:
         except Exception:
             print("can't translate: ", line)
             raise
-    
+
     # Translate datums to their underlying spheroid information.
-    
+
     pfile = open(directory + "datum.dat")
     pfile.readline()
-    
+
     for line in pfile.readlines():
         tokens = [token.strip() for token in line.strip().split(",")]
 

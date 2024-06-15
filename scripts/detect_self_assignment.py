@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import sys
+
 with open(sys.argv[1], "rt") as f:
     lines = f.readlines()
 ret = 0
