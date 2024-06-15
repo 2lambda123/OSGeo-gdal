@@ -114,53 +114,51 @@ def main(argv=sys.argv):
             "with type",
             gdal.GetDataTypeName(band.DataType),
         )
-
-    # Header printing
-    fpout = open(outfile, "wt")
-    fpout.write("DSAA\n")
-    fpout.write(str(band.XSize) + " " + str(band.YSize) + "\n")
-    fpout.write(
-        str(geotransform[0] + geotransform[1] / 2)
-        + " "
-        + str(geotransform[0] + geotransform[1] * (band.XSize - 0.5))
-        + "\n"
-    )
-    if geotransform[5] < 0:
+    with open(outfile, "wt") as fpout:
+        fpout.write("DSAA\n")
+        fpout.write(str(band.XSize) + " " + str(band.YSize) + "\n")
         fpout.write(
-            str(geotransform[3] + geotransform[5] * (band.YSize - 0.5))
+            str(geotransform[0] + geotransform[1] / 2)
             + " "
-            + str(geotransform[3] + geotransform[5] / 2)
+            + str(geotransform[0] + geotransform[1] * (band.XSize - 0.5))
             + "\n"
         )
-    else:
+        if geotransform[5] < 0:
+            fpout.write(
+                str(geotransform[3] + geotransform[5] * (band.YSize - 0.5))
+                + " "
+                + str(geotransform[3] + geotransform[5] / 2)
+                + "\n"
+            )
+        else:
+            fpout.write(
+                str(geotransform[3] + geotransform[5] / 2)
+                + " "
+                + str(geotransform[3] + geotransform[5] * (band.YSize - 0.5))
+                + "\n"
+            )
         fpout.write(
-            str(geotransform[3] + geotransform[5] / 2)
+            str(band.ComputeRasterMinMax(0)[0])
             + " "
-            + str(geotransform[3] + geotransform[5] * (band.YSize - 0.5))
+            + str(band.ComputeRasterMinMax(0)[1])
             + "\n"
         )
-    fpout.write(
-        str(band.ComputeRasterMinMax(0)[0])
-        + " "
-        + str(band.ComputeRasterMinMax(0)[1])
-        + "\n"
-    )
 
-    for i in range(band.YSize - 1, -1, -1):
-        scanline = band.ReadAsArray(0, i, band.XSize, 1, band.XSize, 1)
-        j = 0
-        while j < band.XSize:
-            fpout.write(str(scanline[0, j]))
-            j = j + 1
-            if j % 10:  # Print no more than 10 values per line
-                fpout.write(" ")
-            else:
-                fpout.write("\n")
-        fpout.write("\n")
+        for i in range(band.YSize - 1, -1, -1):
+            scanline = band.ReadAsArray(0, i, band.XSize, 1, band.XSize, 1)
+            j = 0
+            while j < band.XSize:
+                fpout.write(str(scanline[0, j]))
+                j = j + 1
+                if j % 10:  # Print no more than 10 values per line
+                    fpout.write(" ")
+                else:
+                    fpout.write("\n")
+            fpout.write("\n")
 
-        # Display progress report on terminal
-        if not quiet:
-            gdal.TermProgress(float(band.YSize - i) / band.YSize)
+            # Display progress report on terminal
+            if not quiet:
+                gdal.TermProgress(float(band.YSize - i) / band.YSize)
     return 0
 
 

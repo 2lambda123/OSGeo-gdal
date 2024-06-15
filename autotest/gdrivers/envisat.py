@@ -43,18 +43,17 @@ pytestmark = pytest.mark.require_driver("ESAT")
 
 def _get_mds_num(filename):
     mph_size = 1247
+    with open(filename, "rb") as fd:
+        mph = fd.read(mph_size)
+        for line in mph.splitlines():
+            line = line.decode("iso8859-1")
+            if line.startswith("SPH_SIZE"):
+                sph_size = int(line.split("=")[-1][:-7])
+                break
+        else:
+            return
 
-    fd = open(filename, "rb")
-    mph = fd.read(mph_size)
-    for line in mph.splitlines():
-        line = line.decode("iso8859-1")
-        if line.startswith("SPH_SIZE"):
-            sph_size = int(line.split("=")[-1][:-7])
-            break
-    else:
-        return
-
-    sph = fd.read(sph_size)
+        sph = fd.read(sph_size)
     sph = "\n".join(line.decode("iso8859-1").rstrip() for line in sph.splitlines())
     count = 0
     for block in sph.split("\n\n"):

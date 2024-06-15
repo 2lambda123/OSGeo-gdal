@@ -85,21 +85,20 @@ def test_ogr_wasp_elevation_from_linestring_z():
 
     del gdaltest.wasp_ds
     del layer
+    with open("tmp.map") as f:
+        for i in range(4):
+            f.readline()
+        i = 0
+        j = 0
+        for line in f:
+            if not i % 2:
+                [h, n] = line.split()
+                assert int(n) == 3, "number of points should be 3 and is %s" % n
 
-    f = open("tmp.map")
-    for i in range(4):
-        f.readline()
-    i = 0
-    j = 0
-    for line in f:
-        if not i % 2:
-            [h, n] = line.split()
-            assert int(n) == 3, "number of points should be 3 and is %s" % n
+                assert float(h) == j, "altitude should be %d and is %s" % (j, h)
 
-            assert float(h) == j, "altitude should be %d and is %s" % (j, h)
-
-            j += 1
-        i += 1
+                j += 1
+            i += 1
 
     assert j == 10, "nb of feature should be 10 and is %d" % j
 
@@ -147,25 +146,24 @@ def test_ogr_wasp_elevation_from_linestring_z_toler():
 
     del gdaltest.wasp_ds
     del layer
+    with open("tmp.map") as f:
+        for i in range(4):
+            f.readline()
+        i = 0
+        j = 0
+        for line in f:
+            if not i % 2:
+                [h, n] = line.split()
+                if int(n) != 2:
+                    if ogrtest.have_geos():
+                        pytest.fail("number of points should be 2 and is %s" % n)
+                    elif int(n) != 3:
+                        pytest.fail("number of points should be 3 and is %s" % n)
 
-    f = open("tmp.map")
-    for i in range(4):
-        f.readline()
-    i = 0
-    j = 0
-    for line in f:
-        if not i % 2:
-            [h, n] = line.split()
-            if int(n) != 2:
-                if ogrtest.have_geos():
-                    pytest.fail("number of points should be 2 and is %s" % n)
-                elif int(n) != 3:
-                    pytest.fail("number of points should be 3 and is %s" % n)
+                assert float(h) == j, "altitude should be %d and is %s" % (j, h)
 
-            assert float(h) == j, "altitude should be %d and is %s" % (j, h)
-
-            j += 1
-        i += 1
+                j += 1
+            i += 1
 
     assert j == 10, "nb of feature should be 10 and is %d" % j
 
@@ -198,21 +196,20 @@ def test_ogr_wasp_elevation_from_linestring_field():
 
     del gdaltest.wasp_ds
     del layer
+    with open("tmp.map") as f:
+        for i in range(4):
+            f.readline()
+        i = 0
+        j = 0
+        for line in f:
+            if not i % 2:
+                [h, n] = line.split()
+                assert int(n) == 3, "number of points should be 3 and is %s" % n
 
-    f = open("tmp.map")
-    for i in range(4):
-        f.readline()
-    i = 0
-    j = 0
-    for line in f:
-        if not i % 2:
-            [h, n] = line.split()
-            assert int(n) == 3, "number of points should be 3 and is %s" % n
+                assert float(h) == j, "altitude should be %d and is %s" % (j, h)
 
-            assert float(h) == j, "altitude should be %d and is %s" % (j, h)
-
-            j += 1
-        i += 1
+                j += 1
+            i += 1
 
 
 ###############################################################################
@@ -247,23 +244,22 @@ def test_ogr_wasp_roughness_from_linestring_fields():
 
     del gdaltest.wasp_ds
     del layer
+    with open("tmp.map") as f:
+        for i in range(4):
+            f.readline()
+        i = 0
+        j = 0
+        for line in f:
+            if not i % 2:
+                [l, r, n] = line.split()
+                assert int(n) == 3, "number of points should be 3 and is %s" % n
 
-    f = open("tmp.map")
-    for i in range(4):
-        f.readline()
-    i = 0
-    j = 0
-    for line in f:
-        if not i % 2:
-            [l, r, n] = line.split()
-            assert int(n) == 3, "number of points should be 3 and is %s" % n
+                assert (
+                    float(r) == j and float(l) == j - 1
+                ), "roughness should be %d and %d and is %s and %s" % (j - 1, j, l, r)
 
-            assert (
-                float(r) == j and float(l) == j - 1
-            ), "roughness should be %d and %d and is %s and %s" % (j - 1, j, l, r)
-
-            j += 1
-        i += 1
+                j += 1
+            i += 1
 
     assert j == 10, "nb of feature should be 10 and is %d" % j
 
@@ -304,23 +300,22 @@ def test_ogr_wasp_roughness_from_polygon_z():
 
     del gdaltest.wasp_ds
     del layer
-
-    f = open("tmp.map")
-    for i in range(4):
-        f.readline()
-    i = 0
-    j = 0
-    res = set()
-    for line in f:
-        if not i % 2:
-            [l, r, n] = [v for v in line.split()]
-            assert int(n) == 2, "number of points should be 2 and is %d" % int(n)
-            if float(r) > float(l):
-                res.add((float(l), float(r)))
-            else:
-                res.add((float(r), float(l)))
-            j += 1
-        i += 1
+    with open("tmp.map") as f:
+        for i in range(4):
+            f.readline()
+        i = 0
+        j = 0
+        res = set()
+        for line in f:
+            if not i % 2:
+                [l, r, n] = [v for v in line.split()]
+                assert int(n) == 2, "number of points should be 2 and is %d" % int(n)
+                if float(r) > float(l):
+                    res.add((float(l), float(r)))
+                else:
+                    res.add((float(r), float(l)))
+                j += 1
+            i += 1
 
     assert j == 6, "there should be 6 boundaries and there are %d" % j
 
@@ -370,23 +365,22 @@ def test_ogr_wasp_roughness_from_polygon_field():
 
     del gdaltest.wasp_ds
     del layer
-
-    f = open("tmp.map")
-    for i in range(4):
-        f.readline()
-    i = 0
-    j = 0
-    res = set()
-    for line in f:
-        if not i % 2:
-            [l, r, n] = [v for v in line.split()]
-            assert int(n) == 2, "number of points should be 2 and is %d" % int(n)
-            if float(r) > float(l):
-                res.add((float(l), float(r)))
-            else:
-                res.add((float(r), float(l)))
-            j += 1
-        i += 1
+    with open("tmp.map") as f:
+        for i in range(4):
+            f.readline()
+        i = 0
+        j = 0
+        res = set()
+        for line in f:
+            if not i % 2:
+                [l, r, n] = [v for v in line.split()]
+                assert int(n) == 2, "number of points should be 2 and is %d" % int(n)
+                if float(r) > float(l):
+                    res.add((float(l), float(r)))
+                else:
+                    res.add((float(r), float(l)))
+                j += 1
+            i += 1
 
     assert j == 6, "there should be 6 boundaries and there are %d" % j
 
@@ -434,25 +428,24 @@ def test_ogr_wasp_merge():
 
     del gdaltest.wasp_ds
     del layer
-
-    f = open("tmp.map")
-    for i in range(4):
-        f.readline()
-    i = 0
-    j = 0
-    res = []
-    for line in f:
-        if not i % 2:
-            [l, r, n] = [v for v in line.split()]
-            assert (
-                int(n) == 2
-            ), "number of points should be 2 and is %d (unwanted merge ?)" % int(n)
-            if float(r) > float(l):
-                res.append((float(l), float(r)))
-            else:
-                res.append((float(r), float(l)))
-            j += 1
-        i += 1
+    with open("tmp.map") as f:
+        for i in range(4):
+            f.readline()
+        i = 0
+        j = 0
+        res = []
+        for line in f:
+            if not i % 2:
+                [l, r, n] = [v for v in line.split()]
+                assert (
+                    int(n) == 2
+                ), "number of points should be 2 and is %d (unwanted merge ?)" % int(n)
+                if float(r) > float(l):
+                    res.append((float(l), float(r)))
+                else:
+                    res.append((float(r), float(l)))
+                j += 1
+            i += 1
 
     assert j == 6, "there should be 6 boundaries and there are %d" % j
 

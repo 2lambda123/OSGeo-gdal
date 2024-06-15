@@ -2,8 +2,8 @@
 
 import sys
 
-f = open(sys.argv[1], "rt")
-lines = f.readlines()
+with open(sys.argv[1], "rt") as f:
+    lines = f.readlines()
 ret = 0
 for i, line in enumerate(lines):
     if line and line[len(line) - 1] == "\n":
