@@ -62,10 +62,7 @@ static int FloorPowerOfTwo(int nVal)
 /*                         GetErrorMessage()                            */
 /************************************************************************/
 
-#define ERROR_TUPLE(x)                                                         \
-    {                                                                          \
-        x, #x                                                                  \
-    }
+#define ERROR_TUPLE(x) {x, #x}
 
 static const struct
 {

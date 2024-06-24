@@ -146,8 +146,8 @@ struct _object
 #define PyModuleDef_HEAD_INIT                                                  \
     {                                                                          \
         PyObject_HEAD_INIT(nullptr) nullptr, /* m_init */                      \
-            0,                               /* m_index */                     \
-            nullptr,                         /* m_copy */                      \
+        0,                                   /* m_index */                     \
+        nullptr,                             /* m_copy */                      \
     }
 
 typedef struct PyModuleDef_Base

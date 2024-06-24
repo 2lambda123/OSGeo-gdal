@@ -266,7 +266,7 @@ VSIUnixStdioHandle::VSIUnixStdioHandle(
 #ifndef VSI_COUNT_BYTES_READ
     CPL_UNUSED
 #endif
-        VSIUnixStdioFilesystemHandler *poFSIn,
+    VSIUnixStdioFilesystemHandler *poFSIn,
     FILE *fpIn, bool bReadOnlyIn, bool bModeAppendReadWriteIn)
     : fp(fpIn), bReadOnly(bReadOnlyIn),
       bModeAppendReadWrite(bModeAppendReadWriteIn)

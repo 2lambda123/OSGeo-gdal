@@ -329,7 +329,7 @@ static long GCIOAPI_CALL _read_GCIO(GCExportFileH *hGXT)
                     return EOF;
                 }
         } /* switch */
-    }     /* while */
+    } /* while */
     *result = '\0';
 
     SetGCStatus_GCIO(hGXT, vEof_GCIO);

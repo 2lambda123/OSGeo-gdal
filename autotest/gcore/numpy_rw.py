@@ -38,6 +38,7 @@ from osgeo import gdal
 numpy = pytest.importorskip("numpy")
 gdal_array = pytest.importorskip("osgeo.gdal_array")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():

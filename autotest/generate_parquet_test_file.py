@@ -184,99 +184,124 @@ def generate_test_parquet():
     )
     list_boolean = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else True if (j % 2) == 0 else False for j in range(i)]
+            (
+                None
+                if i == 2
+                else [
+                    None if j == 0 else True if (j % 2) == 0 else False
+                    for j in range(i)
+                ]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.bool_()),
     )
     list_uint8 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.uint8()),
     )
     list_int8 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.int8()),
     )
     list_uint16 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.uint16()),
     )
     list_int16 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.int16()),
     )
     list_uint32 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.uint32()),
     )
     list_int32 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.int32()),
     )
     list_uint64 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.uint64()),
     )
     list_int64 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.int64()),
     )
     list_float32 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else 0.5 + j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else 0.5 + j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.float32()),
     )
     list_float64 = pa.array(
         [
-            None
-            if i == 2
-            else [None if j == 0 else 0.5 + j + i * (i - 1) // 2 for j in range(i)]
+            (
+                None
+                if i == 2
+                else [None if j == 0 else 0.5 + j + i * (i - 1) // 2 for j in range(i)]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.float64()),
@@ -303,25 +328,35 @@ def generate_test_parquet():
     )
     list_string = pa.array(
         [
-            None
-            if i == 2
-            else [None]
-            if i == 4
-            else [
-                "".join(["%c" % (65 + j + k) for k in range(1 + j)]) for j in range(i)
-            ]
+            (
+                None
+                if i == 2
+                else (
+                    [None]
+                    if i == 4
+                    else [
+                        "".join(["%c" % (65 + j + k) for k in range(1 + j)])
+                        for j in range(i)
+                    ]
+                )
+            )
             for i in range(5)
         ]
     )
     list_large_string = pa.array(
         [
-            None
-            if i == 2
-            else [None]
-            if i == 4
-            else [
-                "".join(["%c" % (65 + j + k) for k in range(1 + j)]) for j in range(i)
-            ]
+            (
+                None
+                if i == 2
+                else (
+                    [None]
+                    if i == 4
+                    else [
+                        "".join(["%c" % (65 + j + k) for k in range(1 + j)])
+                        for j in range(i)
+                    ]
+                )
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.large_string()),
@@ -649,12 +684,14 @@ def generate_test_parquet():
     )
     list_float16 = pa.array(
         [
-            None
-            if i == 2
-            else [
-                None if j == 0 else np.float16(0.5 + j + i * (i - 1) // 2)
-                for j in range(i)
-            ]
+            (
+                None
+                if i == 2
+                else [
+                    None if j == 0 else np.float16(0.5 + j + i * (i - 1) // 2)
+                    for j in range(i)
+                ]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.float16()),
@@ -665,12 +702,14 @@ def generate_test_parquet():
     )
     list_list_float16 = pa.array(
         [
-            None
-            if i == 2
-            else [
-                None if j == 0 else [np.float16(0.5 + j + i * (i - 1) // 2)]
-                for j in range(i)
-            ]
+            (
+                None
+                if i == 2
+                else [
+                    None if j == 0 else [np.float16(0.5 + j + i * (i - 1) // 2)]
+                    for j in range(i)
+                ]
+            )
             for i in range(5)
         ],
         type=pa.list_(pa.list_(pa.float16())),

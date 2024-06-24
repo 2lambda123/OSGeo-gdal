@@ -38,7 +38,7 @@ OGRSVGLayer::OGRSVGLayer(const char *pszFilename, const char *pszLayerName,
 #ifndef HAVE_EXPAT
                          CPL_UNUSED
 #endif
-                             OGRSVGDataSource *poDSIn)
+                         OGRSVGDataSource *poDSIn)
     : poFeatureDefn(nullptr), poSRS(nullptr),
 #ifdef HAVE_EXPAT
       poDS(poDSIn),

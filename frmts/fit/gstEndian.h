@@ -55,10 +55,10 @@ static inline void gst_swap64(void *value)
 {
     // 0x1122334455667788 --> 0x8877665544332211
 
-    *(uint64 *)(value) = (((*(uint64 *)(value)&0x00000000000000ff) << 56) |
-                          ((*(uint64 *)(value)&0x000000000000ff00) << 40) |
-                          ((*(uint64 *)(value)&0x0000000000ff0000) << 24) |
-                          ((*(uint64 *)(value)&0x00000000ff000000) << 8) |
+    *(uint64 *)(value) = (((*(uint64 *)(value) & 0x00000000000000ff) << 56) |
+                          ((*(uint64 *)(value) & 0x000000000000ff00) << 40) |
+                          ((*(uint64 *)(value) & 0x0000000000ff0000) << 24) |
+                          ((*(uint64 *)(value) & 0x00000000ff000000) << 8) |
                           ((*(uint64 *)(value) >> 8) & 0x00000000ff000000) |
                           ((*(uint64 *)(value) >> 24) & 0x0000000000ff0000) |
                           ((*(uint64 *)(value) >> 40) & 0x000000000000ff00) |
@@ -69,15 +69,15 @@ static inline void gst_swap32(void *value)
 {
     // 0x12 34 56 78 --> 0x78 56 34 12
 
-    *(uint32 *)(value) = (((*(uint32 *)(value)&0x000000ff) << 24) |
-                          ((*(uint32 *)(value)&0x0000ff00) << 8) |
+    *(uint32 *)(value) = (((*(uint32 *)(value) & 0x000000ff) << 24) |
+                          ((*(uint32 *)(value) & 0x0000ff00) << 8) |
                           ((*(uint32 *)(value) >> 8) & 0x0000ff00) |
                           ((*(uint32 *)(value) >> 24) & 0x000000ff));
 }
 
 static inline void gst_swap16(void *value)
 {
-    *(uint16 *)(value) = (((*(uint16 *)(value)&0x00ff) << 8) |
+    *(uint16 *)(value) = (((*(uint16 *)(value) & 0x00ff) << 8) |
                           ((*(uint16 *)(value) >> 8) & 0x00ff));
 }
 
