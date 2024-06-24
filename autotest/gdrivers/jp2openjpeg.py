@@ -42,6 +42,7 @@ from osgeo import gdal, ogr, osr
 
 pytestmark = pytest.mark.require_driver("JP2OpenJPEG")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -1235,7 +1236,7 @@ def test_jp2openjpeg_28():
         (["CODEBLOCK_WIDTH=32", "CODEBLOCK_HEIGHT=32"], 32, 32, False),
     ]
 
-    for (options, expected_cbkw, expected_cbkh, warning_expected) in tests:
+    for options, expected_cbkw, expected_cbkh, warning_expected in tests:
         gdal.ErrorReset()
         with gdal.quiet_errors():
             out_ds = gdaltest.jp2openjpeg_drv.CreateCopy(
@@ -1271,7 +1272,7 @@ def test_jp2openjpeg_29():
         (["TILEPARTS=ILLEGAL"], True),
     ]
 
-    for (options, warning_expected) in tests:
+    for options, warning_expected in tests:
         gdal.ErrorReset()
         with gdal.quiet_errors():
             options.append("BLOCKXSIZE=64")
@@ -1310,7 +1311,7 @@ def test_jp2openjpeg_30():
         (["REVERSIBLE=NO"], True),
     ]
 
-    for (options, warning_expected) in tests:
+    for options, warning_expected in tests:
         gdal.ErrorReset()
         with gdal.quiet_errors():
             out_ds = gdaltest.jp2openjpeg_drv.CreateCopy(

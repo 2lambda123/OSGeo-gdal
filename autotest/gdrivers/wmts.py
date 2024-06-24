@@ -39,6 +39,7 @@ from osgeo import gdal
 
 pytestmark = [pytest.mark.require_driver("WMTS"), pytest.mark.require_driver("WMS")]
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():

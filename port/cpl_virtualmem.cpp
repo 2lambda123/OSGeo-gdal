@@ -141,7 +141,7 @@ struct CPLVirtualMem
                              (pagesize))
 #define ALIGN_UP(p, pagesize)                                                  \
     reinterpret_cast<void *>(                                                  \
-        (reinterpret_cast<GUIntptr_t>(p) + (pagesize)-1) / (pagesize) *        \
+        (reinterpret_cast<GUIntptr_t>(p) + (pagesize) - 1) / (pagesize) *      \
         (pagesize))
 
 #define DEFAULT_PAGE_SIZE (256 * 256)

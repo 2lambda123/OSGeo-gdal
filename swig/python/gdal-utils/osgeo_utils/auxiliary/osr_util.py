@@ -86,9 +86,11 @@ def get_axis_order_from_gis_order(gis_order: Optional[bool]):
     return (
         None
         if gis_order is None
-        else osr.OAMS_TRADITIONAL_GIS_ORDER
-        if gis_order
-        else osr.OAMS_AUTHORITY_COMPLIANT
+        else (
+            osr.OAMS_TRADITIONAL_GIS_ORDER
+            if gis_order
+            else osr.OAMS_AUTHORITY_COMPLIANT
+        )
     )
 
 

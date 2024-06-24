@@ -41,6 +41,7 @@ from osgeo import gdal, ogr, osr
 
 pytestmark = pytest.mark.require_driver("FileGDB")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -1845,7 +1846,7 @@ def test_ogr_fgdb_20(openfilegdb_drv, fgdb_drv, tmp_path):
     lyr.ResetReading()
     expected = [(1, None), (2, None), (4, 3), (3, 4)]
     for i in range(2):
-        for (fid, fgdb_fid) in expected:
+        for fid, fgdb_fid in expected:
             if i == 0:
                 f = lyr.GetNextFeature()
             else:
@@ -1891,7 +1892,7 @@ def test_ogr_fgdb_20(openfilegdb_drv, fgdb_drv, tmp_path):
     ret = lyr.DeleteFeature(3)
     assert ret == 0
 
-    for (fid, fgdb_fid) in [
+    for fid, fgdb_fid in [
         (3, 5),
         (2049, 6),
         (10, 7),
@@ -1934,7 +1935,7 @@ def test_ogr_fgdb_20(openfilegdb_drv, fgdb_drv, tmp_path):
         (9, None),
         (8, 10),
     ]
-    for (fid, fgdb_fid) in expected:
+    for fid, fgdb_fid in expected:
         f = lyr.GetNextFeature()
         assert f is not None
         if (
@@ -2067,7 +2068,7 @@ def test_ogr_fgdb_20(openfilegdb_drv, fgdb_drv, tmp_path):
     # Insert new features
     ds = fgdb_drv.Open(tmp_path / "test.gdb", update=1)
     lyr = ds.GetLayerByName("ogr_fgdb_20")
-    for (fid, fgdb_fid) in [
+    for fid, fgdb_fid in [
         (10000000, 2050),
         (10000001, 2051),
         (8191, 2052),
@@ -2089,7 +2090,7 @@ def test_ogr_fgdb_20(openfilegdb_drv, fgdb_drv, tmp_path):
     ds = None
 
     # Insert a new intermediate FIDs
-    for (fid, fgdb_fid) in [(1000000, 10000002), (1000001, 10000002)]:
+    for fid, fgdb_fid in [(1000000, 10000002), (1000001, 10000002)]:
 
         ds = fgdb_drv.Open(tmp_path / "test.gdb", update=1)
         lyr = ds.GetLayerByName("ogr_fgdb_20")

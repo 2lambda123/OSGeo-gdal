@@ -5432,7 +5432,7 @@ def test_tiff_write_126():
         ),
     ]
 
-    for (options, cs1, cs2, cs3, cs4) in options_list:
+    for options, cs1, cs2, cs3, cs4 in options_list:
         os.environ["JPEGMEM"] = "500M"
         ds = gdaltest.tiff_drv.CreateCopy(
             "/vsimem/tiff_write_126.tif", src_ds, options=options
@@ -5487,7 +5487,7 @@ def test_tiff_write_126():
         ),
     ]
 
-    for (options, cs1, cs3, cs4) in options_list:
+    for options, cs1, cs3, cs4 in options_list:
         os.environ["JPEGMEM"] = "500M"
         ds = gdaltest.tiff_drv.CreateCopy(
             "/vsimem/tiff_write_126.tif", src_ds, options=options
@@ -6154,7 +6154,7 @@ def test_tiff_write_134():
     gdaltest.tiff_drv.Delete("/vsimem/tiff_write_134_src.tif")
     gdaltest.tiff_drv.Delete("/vsimem/tiff_write_134.tif")
 
-    for (inval, expected_val) in [
+    for inval, expected_val in [
         (0, 0),
         (1, 0),
         (2, 0),
@@ -6180,7 +6180,7 @@ def test_tiff_write_134():
             ds = None
             gdaltest.tiff_drv.Delete("/vsimem/tiff_write_134.tif")
 
-    for (inval, expected_val) in [
+    for inval, expected_val in [
         (-32768, -32768),
         (-32767, -32768),
         (-32764, -32768),
@@ -6211,7 +6211,7 @@ def test_tiff_write_134():
             ds = None
             gdaltest.tiff_drv.Delete("/vsimem/tiff_write_134.tif")
 
-    for (inval, expected_val) in [
+    for inval, expected_val in [
         (0, 0),
         (1, 0),
         (3, 0),
@@ -9216,7 +9216,7 @@ def test_tiff_write_compression_create_and_createcopy():
         )
 
     new_tests = []
-    for (before, after) in tests:
+    for before, after in tests:
         new_tests.append((before, after))
         new_tests.append(
             (
@@ -9230,7 +9230,7 @@ def test_tiff_write_compression_create_and_createcopy():
 
     src_ds = gdal.Open("data/rgbsmall.tif")
     data = src_ds.ReadRaster()
-    for (before, after) in tests:
+    for before, after in tests:
         ds = gdaltest.tiff_drv.Create(
             tmpfile,
             src_ds.RasterXSize,

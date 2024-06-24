@@ -41,6 +41,7 @@ from osgeo import gdal, ogr, osr
 
 pytestmark = pytest.mark.require_driver("PDF")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def module_disable_exceptions():
@@ -1808,7 +1809,7 @@ def test_pdf_write_huge(poppler_or_pdfium):
     else:
         tmp_filename = "tmp/pdf_write_huge.pdf"
 
-    for (xsize, ysize) in [(19200, 1), (1, 19200)]:
+    for xsize, ysize in [(19200, 1), (1, 19200)]:
         src_ds = gdal.GetDriverByName("MEM").Create("", xsize, ysize, 1)
         ds = gdaltest.pdf_drv.CreateCopy(tmp_filename, src_ds)
         ds = None

@@ -36,7 +36,7 @@ from osgeo import gdal
 
 def test_nodatamaskband_1():
 
-    for (dt, struct_type, v) in [
+    for dt, struct_type, v in [
         (gdal.GDT_Byte, "B", 255),
         (gdal.GDT_Int16, "h", 32767),
         (gdal.GDT_UInt16, "H", 65535),

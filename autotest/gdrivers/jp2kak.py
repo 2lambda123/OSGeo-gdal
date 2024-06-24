@@ -37,6 +37,7 @@ from osgeo import gdal, osr
 
 pytestmark = pytest.mark.require_driver("JP2KAK")
 
+
 ###############################################################################
 @pytest.fixture(autouse=True, scope="module")
 def startup_and_cleanup():

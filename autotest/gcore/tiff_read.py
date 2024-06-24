@@ -1365,7 +1365,7 @@ def test_tiff_direct_and_virtual_mem_io():
                         ("GTIFF_VIRTUAL_MEM_IO", "/vsimem"),
                         ("GTIFF_VIRTUAL_MEM_IO", "tmp"),
                     ]
-                for (option, prefix) in options:
+                for option, prefix in options:
                     if dt == gdal.GDT_CInt16:
                         niter = 3
                     elif prefix == "tmp":
@@ -3193,7 +3193,7 @@ def test_tiff_read_gcp_internal_and_auxxml():
         ("PAM,INTERNAL", False, "4326", 2),
     ]
 
-    for (config_option_value, copy_pam, expected_srs, expected_gcp_count) in tests:
+    for config_option_value, copy_pam, expected_srs, expected_gcp_count in tests:
         for iteration in range(2):
             gdal.FileFromMemBuffer(
                 "/vsimem/byte_gcp.tif", open("data/byte_gcp.tif", "rb").read()
@@ -3343,7 +3343,7 @@ def test_tiff_read_ycbcr_lzw():
         ("ycbcr_44_lzw_optimized.tif", 19666, 19860, 18836),
     ]
 
-    for (filename, cs1, cs2, cs3) in tests:
+    for filename, cs1, cs2, cs3 in tests:
         ds = gdal.Open("data/" + filename)
         if cs1 == -1:
             with pytest.raises(Exception):
@@ -3832,7 +3832,7 @@ def test_tiff_read_stripoffset_types():
         ("data/bigtiff_two_strip_be_long8.tif", [284, 285]),
     ]
 
-    for (filename, expected_offsets) in tests:
+    for filename, expected_offsets in tests:
 
         # Only when built against internal libtiff we reject byte datatype
         if (

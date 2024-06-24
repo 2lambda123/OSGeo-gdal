@@ -38,6 +38,7 @@ pytestmark = pytest.mark.require_driver("NSIDCbin")
 ###############################################################################
 # Perform simple read test.
 
+
 ## test file
 ## mkdir autotest/gdrivers/data/nsidcbin
 ## cd autotest/gdrivers/data/nsidcbin

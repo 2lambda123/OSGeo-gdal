@@ -2619,7 +2619,7 @@ static int GDALGridProgressMonoThread(GDALGridJob *psJob)
 static void GDALGridJobProcess(void *user_data)
 {
     GDALGridJob *const psJob = static_cast<GDALGridJob *>(user_data);
-    int (*pfnProgress)(GDALGridJob * psJob) = psJob->pfnProgress;
+    int (*pfnProgress)(GDALGridJob *psJob) = psJob->pfnProgress;
     const GUInt32 nXSize = psJob->nXSize;
 
     /* -------------------------------------------------------------------- */

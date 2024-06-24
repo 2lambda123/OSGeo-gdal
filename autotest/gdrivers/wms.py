@@ -442,6 +442,7 @@ def test_wms_8(tmp_path):
 ###############################################################################
 # Test OnEarth Tiled WMS minidriver
 
+
 # Permanently down
 def wms_9():
 
@@ -675,6 +676,7 @@ def test_wms_15():
 ###############################################################################
 # Test getting subdatasets from WMS-C Capabilities
 
+
 # server often returns a 504 after ages; this test can take minutes
 @gdaltest.disable_exceptions()
 @pytest.mark.slow()
@@ -766,6 +768,7 @@ def test_wms_16():
 
 ###############################################################################
 # Test a TiledWMS dataset with a color table (#4613)
+
 
 # Permanently down
 def wms_17():

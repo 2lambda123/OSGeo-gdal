@@ -2315,7 +2315,7 @@ def test_gpkg_26():
         ("PseudoTMS_GlobalMercator", [4118, 4118, 4118, 4406], None),
     ]
 
-    for (scheme, expected_cs, other_options) in tests:
+    for scheme, expected_cs, other_options in tests:
 
         src_ds = gdal.Open("data/byte.tif")
         options = ["TILE_FORMAT=PNG", "TILING_SCHEME=" + scheme]
@@ -2360,7 +2360,7 @@ def test_gpkg_26():
         ("GoogleMapsCompatible", [[35429, 36787, 20035, 17849]], None),
     ]
 
-    for (scheme, expected_cs, other_options) in tests:
+    for scheme, expected_cs, other_options in tests:
 
         src_ds = gdal.Open("data/small_world.tif")
         options = ["TILE_FORMAT=PNG", "TILING_SCHEME=" + scheme]
