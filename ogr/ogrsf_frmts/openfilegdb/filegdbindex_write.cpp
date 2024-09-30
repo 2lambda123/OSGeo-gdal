@@ -489,7 +489,8 @@ static bool WriteIndex(
 
     // Sort by ascending values, and for same value by ascending OID
     std::sort(asValues.begin(), asValues.end(),
-              [](const ValueOIDPair &a, const ValueOIDPair &b) {
+              [](const ValueOIDPair &a, const ValueOIDPair &b)
+              {
                   return a.first < b.first ||
                          (a.first == b.first && a.second < b.second);
               });

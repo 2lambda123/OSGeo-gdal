@@ -203,7 +203,7 @@ CPLErr GDALGridInverseDistanceToAPower2NoSmoothingNoSearchAVX(
     else
         (*pdfValue) = fNominator / fDenominator;
 
-        // GCC needs explicit zeroing.
+    // GCC needs explicit zeroing.
 #if defined(__GNUC__) && !defined(__clang__)
     _mm256_zeroupper();
 #endif

@@ -744,14 +744,11 @@ class CPL_DLL OGRSpatialReference
 };
 
 /*! @cond Doxygen_Suppress */
-struct CPL_DLL OGRSpatialReferenceReleaser
-{
-    void operator()(OGRSpatialReference *poSRS) const
-    {
-        if (poSRS)
-            poSRS->Release();
-    }
-};
+struct CPL_DLL OGRSpatialReferenceReleaser{void operator()(
+    OGRSpatialReference *poSRS) const {if (poSRS) poSRS->Release();
+}
+}
+;
 /*! @endcond */
 
 /************************************************************************/

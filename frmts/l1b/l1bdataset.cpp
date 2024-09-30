@@ -2836,7 +2836,7 @@ CPLErr L1BSolarZenithAnglesRasterBand::IReadBlock(CPL_UNUSED int nBlockXOff,
                                                  (nAddBitStart / 8) + 1] &
                                 ((1 << (((nAddBitStart % 8) + 3 - 8))) - 1))
                                << (3 - ((((nAddBitStart % 8) + 3 - 8))));
-            * /
+            */
 #endif
             if (nFractional > 4)
             {

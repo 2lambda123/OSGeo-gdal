@@ -725,7 +725,7 @@ CPLSpawnAsync(int (*pfnMain)(CPL_FILE_HANDLE, CPL_FILE_HANDLE),
         if (bCreateErrorPipe)
             close(pipe_err[OUT_FOR_PARENT]);
 
-            // Ignore SIGPIPE.
+        // Ignore SIGPIPE.
 #ifdef SIGPIPE
         std::signal(SIGPIPE, SIG_IGN);
 #endif
@@ -808,7 +808,7 @@ CPLSpawnAsync(int (*pfnMain)(CPL_FILE_HANDLE, CPL_FILE_HANDLE),
         if (bCreateErrorPipe)
             close(pipe_err[OUT_FOR_PARENT]);
 
-            // Ignore SIGPIPE.
+        // Ignore SIGPIPE.
 #ifdef SIGPIPE
         std::signal(SIGPIPE, SIG_IGN);
 #endif

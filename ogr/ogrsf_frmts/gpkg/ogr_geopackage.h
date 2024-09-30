@@ -105,9 +105,7 @@ struct OGRGPKGTableLayerFillArrowArray
     std::string osErrorMsg{};
     OGRFeatureDefn *poFeatureDefn = nullptr;
     OGRGeoPackageLayer *poLayer = nullptr;
-    struct tm brokenDown
-    {
-    };
+    struct tm brokenDown{};
     sqlite3 *hDB = nullptr;
     int nMaxBatchSize = 0;
     bool bAsynchronousMode = false;
