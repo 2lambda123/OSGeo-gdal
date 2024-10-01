@@ -60,13 +60,11 @@ XML_Parser CPL_DLL OGRCreateExpatXMLParser(void);
 
 //
 //! @cond Doxygen_Suppress
-struct CPL_DLL OGRExpatUniquePtrDeleter
-{
-    void operator()(XML_Parser oParser) const
-    {
-        XML_ParserFree(oParser);
-    }
-};
+struct CPL_DLL OGRExpatUniquePtrDeleter{void operator()(XML_Parser oParser)
+                                            const {XML_ParserFree(oParser);
+}
+}
+;
 //! @endcond
 
 /** Unique pointer type for XML_Parser.

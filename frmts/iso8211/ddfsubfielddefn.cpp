@@ -490,9 +490,9 @@ double DDFSubfieldDefn::ExtractFloatData(const char *pachSourceData,
             if (pnConsumedBytes != nullptr)
                 *pnConsumedBytes = nFormatWidth;
 
-                // Byte swap the data if it isn't in machine native format.
-                // In any event we copy it into our buffer to ensure it is
-                // word aligned.
+            // Byte swap the data if it isn't in machine native format.
+            // In any event we copy it into our buffer to ensure it is
+            // word aligned.
 #ifdef CPL_LSB
             if (pszFormatString[0] == 'B')
 #else
@@ -628,9 +628,9 @@ int DDFSubfieldDefn::ExtractIntData(const char *pachSourceData, int nMaxBytes,
             if (pnConsumedBytes != nullptr)
                 *pnConsumedBytes = nFormatWidth;
 
-                // Byte swap the data if it isn't in machine native format.
-                // In any event we copy it into our buffer to ensure it is
-                // word aligned.
+            // Byte swap the data if it isn't in machine native format.
+            // In any event we copy it into our buffer to ensure it is
+            // word aligned.
 #ifdef CPL_LSB
             if (pszFormatString[0] == 'B')
 #else

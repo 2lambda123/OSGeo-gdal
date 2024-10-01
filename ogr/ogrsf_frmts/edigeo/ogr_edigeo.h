@@ -170,7 +170,7 @@ class OGREDIGEODataSource final : public OGRDataSource
     CPLString osGON; /* Nom du sous-ensemble de la référence de coordonnées */
     CPLString osQAN; /* Nom du sous-ensemble de qualité */
     CPLString osDIN; /* Nom du sous-ensemble de définition de la nomenclature */
-    CPLString osSCN;    /* Nom du sous-ensemble de définition du SCD */
+    CPLString osSCN; /* Nom du sous-ensemble de définition du SCD */
     strListType aosGDN; /* Nom du sous-ensemble de données géographiques */
     int ReadTHF(VSILFILE *fp);
 

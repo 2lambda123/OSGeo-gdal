@@ -190,33 +190,31 @@ extern "C++"
 #endif
 
     /*! @cond Doxygen_Suppress */
-    struct CPL_DLL CPLXMLTreeCloserDeleter
-    {
-        void operator()(CPLXMLNode *psNode) const
-        {
-            CPLDestroyXMLNode(psNode);
-        }
-    };
-    /*! @endcond */
+    struct CPL_DLL CPLXMLTreeCloserDeleter{void operator()(CPLXMLNode *psNode)
+                                               const {CPLDestroyXMLNode(psNode);
+}
+}
+;
+/*! @endcond */
 
-    /** Manage a tree of XML nodes so that all nodes are freed when the instance
+/** Manage a tree of XML nodes so that all nodes are freed when the instance
      * goes out of scope.  Only the top level node should be in a
      * CPLXMLTreeCloser.
      */
-    class CPL_DLL CPLXMLTreeCloser
-        : public std::unique_ptr<CPLXMLNode, CPLXMLTreeCloserDeleter>
+class CPL_DLL CPLXMLTreeCloser
+    : public std::unique_ptr<CPLXMLNode, CPLXMLTreeCloserDeleter>
+{
+  public:
+    /** Constructor */
+    explicit CPLXMLTreeCloser(CPLXMLNode *data)
+        : std::unique_ptr<CPLXMLNode, CPLXMLTreeCloserDeleter>(data)
     {
-      public:
-        /** Constructor */
-        explicit CPLXMLTreeCloser(CPLXMLNode *data)
-            : std::unique_ptr<CPLXMLNode, CPLXMLTreeCloserDeleter>(data)
-        {
-        }
+    }
 
-        /** Returns a pointer to the document (root) element
+    /** Returns a pointer to the document (root) element
          * @return the node pointer */
-        CPLXMLNode *getDocumentElement();
-    };
+    CPLXMLNode *getDocumentElement();
+};
 
 }  // extern "C++"
 

@@ -588,31 +588,26 @@ extern "C++"
 #include <memory>
 
     /*! @cond Doxygen_Suppress */
-    struct CPL_DLL CSLDestroyReleaser
-    {
-        void operator()(char **papszStr) const
-        {
-            CSLDestroy(papszStr);
-        }
-    };
-    /*! @endcond */
+    struct CPL_DLL CSLDestroyReleaser{void operator()(char **papszStr)
+                                          const {CSLDestroy(papszStr);
+}
+}
+;
+/*! @endcond */
 
-    /** Unique pointer type to use with CSL functions returning a char** */
-    using CSLUniquePtr = std::unique_ptr<char *, CSLDestroyReleaser>;
+/** Unique pointer type to use with CSL functions returning a char** */
+using CSLUniquePtr = std::unique_ptr<char *, CSLDestroyReleaser>;
 
-    /*! @cond Doxygen_Suppress */
-    struct CPL_DLL CPLFreeReleaser
-    {
-        void operator()(void *p) const
-        {
-            CPLFree(p);
-        }
-    };
-    /*! @endcond */
+/*! @cond Doxygen_Suppress */
+struct CPL_DLL CPLFreeReleaser{void operator()(void *p) const {CPLFree(p);
+}
+}
+;
+/*! @endcond */
 
-    /** Unique pointer type to use with functions returning a char* to release
+/** Unique pointer type to use with functions returning a char* to release
      * with CPLFree */
-    using CPLCharUniquePtr = std::unique_ptr<char, CPLFreeReleaser>;
+using CPLCharUniquePtr = std::unique_ptr<char, CPLFreeReleaser>;
 
 #endif
 

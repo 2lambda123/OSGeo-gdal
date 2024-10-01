@@ -43,7 +43,7 @@ GDALIdentifyEnum OGROpenFileGDBDriverIdentify(GDALOpenInfo *poOpenInfo,
     if (STARTS_WITH(pszFilename, "OpenFileGDB:"))
         return GDAL_IDENTIFY_TRUE;
 
-        // FUSIL is a fuzzer
+    // FUSIL is a fuzzer
 #ifdef FOR_FUSIL
     CPLString osOrigFilename(pszFilename);
 #endif
