@@ -467,7 +467,7 @@ def test_basic_test_14():
     with pytest.raises(Exception):
         ds.SetMetadata({ClassWithoutStrRepr(): "a"})
 
-    ds.SetMetadata([b"foo=\xE8\x03"])
+    ds.SetMetadata([b"foo=\xe8\x03"])
     assert ds.GetMetadata_List() == [b"foo=\xe8\x03"]
 
 
@@ -663,7 +663,7 @@ def test_gdal_EscapeString():
 
     assert gdal.EscapeString('"', gdal.CPLES_XML) == "&quot;"
 
-    assert gdal.EscapeString(b"\xEF\xBB\xBF", gdal.CPLES_XML) == b"&#xFEFF;"
+    assert gdal.EscapeString(b"\xef\xbb\xbf", gdal.CPLES_XML) == b"&#xFEFF;"
 
     assert gdal.EscapeString("\t", gdal.CPLES_XML) == "\t"
 
@@ -681,7 +681,7 @@ def test_gdal_EscapeString():
 
     assert gdal.EscapeString('"', gdal.CPLES_XML_BUT_QUOTES) == '"'
 
-    assert gdal.EscapeString(b"\xEF\xBB\xBF", gdal.CPLES_XML_BUT_QUOTES) == b"&#xFEFF;"
+    assert gdal.EscapeString(b"\xef\xbb\xbf", gdal.CPLES_XML_BUT_QUOTES) == b"&#xFEFF;"
 
     assert gdal.EscapeString("\t", gdal.CPLES_XML_BUT_QUOTES) == "\t"
 

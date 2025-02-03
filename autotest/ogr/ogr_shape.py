@@ -1943,7 +1943,7 @@ def test_ogr_shape_49():
     name = feat.GetField("NAME")
 
     # Setup the utf-8 string.
-    gdaltest.exp_name = "OSEBERG S\u00D8R"
+    gdaltest.exp_name = "OSEBERG S\u00d8R"
 
     assert name == gdaltest.exp_name, "Did not get expected name, encoding problems?"
 
@@ -4462,7 +4462,7 @@ def check_EOF(filename, expected=True):
     size = gdal.VSIStatL(filename).size
     content = gdal.VSIFReadL(1, size, f)
     gdal.VSIFCloseL(f)
-    pos = content.find("\x1A".encode("LATIN1"))
+    pos = content.find("\x1a".encode("LATIN1"))
     if expected:
         if pos < 0:
             print("Did not find EOF char")
@@ -5762,7 +5762,7 @@ def test_ogr_shape_write_arrow_fallback_types(tmp_vsimem):
     f["date"] = "2023/10/06"
     f["time"] = "12:34:56"
     f["datetime"] = "2023/10/06 19:43:00"
-    f.SetField("binary", b"\x01\x23\x46\x57\x89\xAB\xCD\xEF")
+    f.SetField("binary", b"\x01\x23\x46\x57\x89\xab\xcd\xef")
     f["stringlist"] = ["foo", "bar"]
     f["intlist"] = [1, 2]
     f["int64list"] = [12345678901234, 2]

@@ -761,7 +761,7 @@ def test_gdalbuildvrt_lib_nodataMaxMaskThreshold_rgba(tmp_vsimem):
     ds.GetRasterBand(1).WriteRaster(0, 0, 2, 1, b"\x01\x00")
     ds.GetRasterBand(2).WriteRaster(0, 0, 2, 1, b"\x02\x02")
     ds.GetRasterBand(3).WriteRaster(0, 0, 2, 1, b"\x03\x03")
-    ds.GetRasterBand(4).WriteRaster(0, 0, 2, 1, b"\x00\xFF")
+    ds.GetRasterBand(4).WriteRaster(0, 0, 2, 1, b"\x00\xff")
     ds.GetRasterBand(4).SetColorInterpretation(gdal.GCI_AlphaBand)
 
     vrt_ds = gdal.BuildVRT("", [ds], nodataMaxMaskThreshold=128, VRTNodata=0)
@@ -783,12 +783,12 @@ def test_gdalbuildvrt_lib_nodataMaxMaskThreshold_rgba(tmp_vsimem):
     # VRTNodata=255, test remapping of 255 to 254
     ds = gdal.GetDriverByName("MEM").Create("", 2, 1, 2)
     ds.SetGeoTransform([0, 1, 0, 0, 0, -1])
-    ds.GetRasterBand(1).WriteRaster(0, 0, 2, 1, b"\x01\xFF")
-    ds.GetRasterBand(2).WriteRaster(0, 0, 2, 1, b"\x00\xFF")
+    ds.GetRasterBand(1).WriteRaster(0, 0, 2, 1, b"\x01\xff")
+    ds.GetRasterBand(2).WriteRaster(0, 0, 2, 1, b"\x00\xff")
     ds.GetRasterBand(2).SetColorInterpretation(gdal.GCI_AlphaBand)
 
     vrt_ds = gdal.BuildVRT("", [ds], nodataMaxMaskThreshold=128, VRTNodata=255)
-    assert vrt_ds.GetRasterBand(1).ReadRaster() == b"\xFF\xFE"
+    assert vrt_ds.GetRasterBand(1).ReadRaster() == b"\xff\xfe"
 
 
 ###############################################################################
@@ -804,7 +804,7 @@ def test_gdalbuildvrt_lib_nodataMaxMaskThreshold_rgb_mask(tmp_vsimem):
     ds.GetRasterBand(2).WriteRaster(0, 0, 2, 1, struct.pack("H" * 2, 2, 2))
     ds.GetRasterBand(3).WriteRaster(0, 0, 2, 1, struct.pack("H" * 2, 3, 2))
     ds.GetRasterBand(1).CreateMaskBand(gdal.GMF_PER_DATASET)
-    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xFF")
+    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xff")
     ds.Close()
 
     vrt_filename = str(tmp_vsimem / "test.vrt")
@@ -824,7 +824,7 @@ def test_gdalbuildvrt_lib_nodataMaxMaskThreshold_rgb_mask(tmp_vsimem):
     ds.SetGeoTransform([0, 1, 0, 0, 0, -1])
     ds.GetRasterBand(1).WriteRaster(0, 0, 2, 1, struct.pack("H" * 2, 1, 65535))
     ds.GetRasterBand(1).CreateMaskBand(gdal.GMF_PER_DATASET)
-    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xFF")
+    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xff")
     ds.Close()
 
     vrt_filename = str(tmp_vsimem / "test.vrt")
@@ -842,7 +842,7 @@ def test_gdalbuildvrt_lib_nodataMaxMaskThreshold_rgb_mask(tmp_vsimem):
     ds.SetGeoTransform([0, 1, 0, 0, 0, -1])
     ds.GetRasterBand(1).WriteRaster(0, 0, 2, 1, struct.pack("h" * 2, 1, -32768))
     ds.GetRasterBand(1).CreateMaskBand(gdal.GMF_PER_DATASET)
-    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xFF")
+    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xff")
     ds.Close()
 
     vrt_filename = str(tmp_vsimem / "test.vrt")
@@ -860,7 +860,7 @@ def test_gdalbuildvrt_lib_nodataMaxMaskThreshold_rgb_mask(tmp_vsimem):
     ds.SetGeoTransform([0, 1, 0, 0, 0, -1])
     ds.GetRasterBand(1).WriteRaster(0, 0, 2, 1, struct.pack("h" * 2, 1, 32767))
     ds.GetRasterBand(1).CreateMaskBand(gdal.GMF_PER_DATASET)
-    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xFF")
+    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xff")
     ds.Close()
 
     vrt_filename = str(tmp_vsimem / "test.vrt")
@@ -878,7 +878,7 @@ def test_gdalbuildvrt_lib_nodataMaxMaskThreshold_rgb_mask(tmp_vsimem):
     ds.SetGeoTransform([0, 1, 0, 0, 0, -1])
     ds.GetRasterBand(1).WriteRaster(0, 0, 2, 1, struct.pack("f" * 2, 1, 0))
     ds.GetRasterBand(1).CreateMaskBand(gdal.GMF_PER_DATASET)
-    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xFF")
+    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 1, b"\x00\xff")
     ds.Close()
 
     vrt_filename = str(tmp_vsimem / "test.vrt")
@@ -894,7 +894,7 @@ def test_gdalbuildvrt_lib_nodataMaxMaskThreshold_rgb_mask(tmp_vsimem):
     ds.SetGeoTransform([0, 1, 0, 0, 0, -1])
     ds.GetRasterBand(1).WriteRaster(0, 0, 3, 1, struct.pack("f" * 3, 0, 1, 2))
     ds.GetRasterBand(1).CreateMaskBand(gdal.GMF_PER_DATASET)
-    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 3, 1, b"\x00\xFF\xFF")
+    ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 3, 1, b"\x00\xff\xff")
     ds.Close()
 
     vrt_filename = str(tmp_vsimem / "test.vrt")

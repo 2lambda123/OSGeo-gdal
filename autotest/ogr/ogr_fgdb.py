@@ -260,7 +260,7 @@ def test_gdb(fgdb_drv, tmp_path, test_gdb_datalist):
             feat.SetField("adate", "2013/12/26 12:34:56")
             feat.SetField("guid", "{12345678-9abc-DEF0-1234-567890ABCDEF}")
             feat.SetField("xml", "<foo></foo>")
-            feat.SetField("binary", b"\x00\xFF\x7F")
+            feat.SetField("binary", b"\x00\xff\x7f")
             feat.SetField("binary2", b"\x12\x34\x56")
             feat.SetField("smallint2", -32768)
             feat.SetField("float2", 1.5)

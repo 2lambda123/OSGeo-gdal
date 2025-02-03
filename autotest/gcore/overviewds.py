@@ -327,7 +327,7 @@ def test_overviewds_mask(tmp_vsimem):
     with gdaltest.config_option("GDAL_TIFF_INTERNAL_MASK", "YES"):
         src_ds = gdal.GetDriverByName("GTiff").Create(tmp_vsimem / "test.tif", 4, 4)
         src_ds.CreateMaskBand(gdal.GMF_PER_DATASET)
-        src_ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 4, b"\xFF" * 8)
+        src_ds.GetRasterBand(1).GetMaskBand().WriteRaster(0, 0, 2, 4, b"\xff" * 8)
         src_ds.BuildOverviews("NEAR", [2, 4])
         src_ds = None
 

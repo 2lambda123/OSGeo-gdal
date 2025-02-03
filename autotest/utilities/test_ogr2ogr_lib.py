@@ -98,7 +98,7 @@ def test_ogr2ogr_lib_2b(tmp_vsimem):
 
     # Test @filename syntax with a UTF-8 BOM
     gdal.FileFromMemBuffer(
-        tmp_vsimem / "sql.txt", "\xEF\xBB\xBFselect * from poly".encode("LATIN1")
+        tmp_vsimem / "sql.txt", "\xef\xbb\xbfselect * from poly".encode("LATIN1")
     )
     ds = gdal.VectorTranslate(
         "", srcDS, format="Memory", SQLStatement=f"@{tmp_vsimem}/sql.txt"

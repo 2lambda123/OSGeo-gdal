@@ -1355,7 +1355,7 @@ def test_ecw_37(tmp_path):
 def test_ecw_38(tmp_path):
 
     fname = (
-        tmp_path / "za\u017C\u00F3\u0142\u0107g\u0119\u015Bl\u0105ja\u017A\u0144.ecw"
+        tmp_path / "za\u017c\u00f3\u0142\u0107g\u0119\u015bl\u0105ja\u017a\u0144.ecw"
     )
 
     if gdaltest.ecw_drv.major_version < 4:

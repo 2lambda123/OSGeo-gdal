@@ -374,7 +374,7 @@ def test_cog_creation_of_overviews_with_mask():
     src_ds = gdal.Translate("", "data/byte.tif", options="-of MEM -outsize 2048 300")
     src_ds.CreateMaskBand(gdal.GMF_PER_DATASET)
     src_ds.GetRasterBand(1).GetMaskBand().WriteRaster(
-        0, 0, 1024, 300, b"\xFF", buf_xsize=1, buf_ysize=1
+        0, 0, 1024, 300, b"\xff", buf_xsize=1, buf_ysize=1
     )
 
     with gdaltest.config_option("GDAL_TIFF_INTERNAL_MASK", "YES"):
