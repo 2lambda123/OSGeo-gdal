@@ -1,6 +1,6 @@
 repos:
     -   repo: https://github.com/psf/black
-        rev: 24.10.0
+        rev: 25.1.0
         hooks:
         -   id: black
             exclude: >
@@ -9,7 +9,7 @@ repos:
                 autotest/ogr/data/
               )
     -   repo: https://github.com/PyCQA/isort
-        rev: 5.13.2
+        rev: 6.0.0
         hooks:
         -   id: isort
             exclude: >
@@ -28,7 +28,7 @@ repos:
                 autotest/ogr/data/
               )
     -   repo: https://github.com/pre-commit/mirrors-clang-format
-        rev: 'v19.1.6'
+        rev: 'v19.1.7'
         hooks:
         -   id: clang-format
             exclude: >
