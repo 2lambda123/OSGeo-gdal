@@ -446,7 +446,7 @@ def get_bands(
 
 
 def get_scales_and_offsets(
-    bands: Union[PathOrDS, MaybeSequence[gdal.Band]]
+    bands: Union[PathOrDS, MaybeSequence[gdal.Band]],
 ) -> Tuple[bool, MaybeSequence[Real], MaybeSequence[Real]]:
     if isinstance(bands, PathOrDS.__args__):
         bands = get_bands(bands)

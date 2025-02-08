@@ -160,7 +160,7 @@ def tbl_linestring(gpkg_ds):
         feat.SetField("fld_string", "test string %d test" % i)
         feat.SetField("fld_date", "2014/05/17 ")
         feat.SetField("fld_datetime", "2014/12/31  23:59:59.999Z")
-        feat.SetField("fld_binary", b"\xFF\xFE")
+        feat.SetField("fld_binary", b"\xff\xfe")
         feat.SetField("fld_boolean", 1)
         feat.SetField("fld_smallint", -32768)
         feat.SetField("fld_float", 1.23)
@@ -8006,7 +8006,7 @@ def test_ogr_gpkg_arrow_stream_numpy(tmp_vsimem):
     f.SetField("str", "abc")
     f.SetField("date", "2022-05-31")
     f.SetField("datetime", "2022-05-31T12:34:56.789Z")
-    f.SetField("binary", b"\xDE\xAD")
+    f.SetField("binary", b"\xde\xad")
     f.SetGeometryDirectly(ogr.CreateGeometryFromWkt("POINT(1 2)"))
     lyr.CreateFeature(f)
 
@@ -8078,7 +8078,7 @@ def test_ogr_gpkg_arrow_stream_numpy(tmp_vsimem):
             assert batch["str"][0] == f.GetField("str").encode("utf-8")
             assert batch["date"][0] == numpy.datetime64("2022-05-31")
             assert batch["datetime"][0] == numpy.datetime64("2022-05-31T12:34:56.789")
-            assert bytes(batch["binary"][0]) == b"\xDE\xAD"
+            assert bytes(batch["binary"][0]) == b"\xde\xad"
             assert len(bytes(batch["geom"][0])) == 21
 
             assert batch["fid"][1] == 2
@@ -9804,7 +9804,7 @@ def test_ogr_gpkg_write_arrow_fallback_types(tmp_vsimem):
     f["date"] = "2023/10/06"
     f["time"] = "12:34:56"
     f["datetime"] = "2023/10/06 19:43:00"
-    f.SetField("binary", b"\x01\x23\x46\x57\x89\xAB\xCD\xEF")
+    f.SetField("binary", b"\x01\x23\x46\x57\x89\xab\xcd\xef")
     f["stringlist"] = ["foo", "bar"]
     f["intlist"] = [1, 2]
     f["int64list"] = [12345678901234, 2]

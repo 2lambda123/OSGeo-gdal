@@ -1999,7 +1999,7 @@ def test_tiff_ovr_49(both_endian):
 
     ds = gdal.GetDriverByName("GTiff").Create("/vsimem/tiff_ovr_49.tif", 1023, 1023, 1)
     ds.GetRasterBand(1).Fill(0)
-    c = "\xFF"
+    c = "\xff"
     # Fails on 1.11.1 with col = 255 or col = 1019
     col = 1019
     ds.GetRasterBand(1).WriteRaster(col, 0, 1, 1023, c, 1, 1)

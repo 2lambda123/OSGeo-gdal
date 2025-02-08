@@ -261,7 +261,7 @@ def test_ogr_elasticsearch_1(
     feat["date_field"] = "2015/08/12"
     feat["datetime_field"] = "2015/08/12 12:34:56.789"
     feat["time_field"] = "12:34:56.789"
-    feat["binary_field"] = b"\x01\x23\x46\x57\x89\xAB\xCD\xEF"
+    feat["binary_field"] = b"\x01\x23\x46\x57\x89\xab\xcd\xef"
     feat.SetGeometry(ogr.CreateGeometryFromWkt("POINT(0 1)"))
 
     # Simulate server error

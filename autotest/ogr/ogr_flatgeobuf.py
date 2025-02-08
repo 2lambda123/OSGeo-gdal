@@ -584,7 +584,7 @@ def test_ogr_flatgeobuf_bool_short_float_binary():
     f["bool"] = True
     f["short"] = -32768
     f["float"] = 1.5
-    f["bin"] = b"\x01\xFF"
+    f["bin"] = b"\x01\xff"
     f.SetGeometry(ogr.CreateGeometryFromWkt("POINT (0 0)"))
     lyr.CreateFeature(f)
 
@@ -608,7 +608,7 @@ def test_ogr_flatgeobuf_bool_short_float_binary():
     assert f["bool"] == True
     assert f["short"] == -32768
     assert f["float"] == 1.5
-    assert f.GetFieldAsBinary("bin") == b"\x01\xFF"
+    assert f.GetFieldAsBinary("bin") == b"\x01\xff"
     f = lyr.GetNextFeature()
     assert f.GetFieldAsBinary("bin") == b""
     ds = None
@@ -1019,7 +1019,7 @@ def test_ogr_flatgeobuf_arrow_stream_numpy(layer_creation_options):
     f.SetField("float64", 1.250123)
     f.SetField("str", "abc")
     f.SetField("datetime", "2022-05-31T12:34:56.789Z")
-    f.SetField("binary", b"\xDE\xAD")
+    f.SetField("binary", b"\xde\xad")
     f.SetGeometryDirectly(ogr.CreateGeometryFromWkt("POINT(1 2)"))
     lyr.CreateFeature(f)
 
@@ -1069,7 +1069,7 @@ def test_ogr_flatgeobuf_arrow_stream_numpy(layer_creation_options):
         assert batch[fieldname][0] == f.GetField(fieldname)
     assert batch["str"][0] == f.GetField("str").encode("utf-8")
     assert batch["datetime"][0] == numpy.datetime64("2022-05-31T12:34:56.789")
-    assert bytes(batch["binary"][0]) == b"\xDE\xAD"
+    assert bytes(batch["binary"][0]) == b"\xde\xad"
     assert len(bytes(batch["wkb_geometry"][0])) == 21
 
     assert batch["OGC_FID"][1] == 1

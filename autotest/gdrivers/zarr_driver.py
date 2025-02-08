@@ -2933,7 +2933,7 @@ def test_zarr_write_interleave(dt, array_type):
     "string_format,input_str,output_str",
     [
         ("ASCII", "0123456789truncated", "0123456789"),
-        ("UNICODE", "\u00E9" + "123456789truncated", "\u00E9" + "123456789"),
+        ("UNICODE", "\u00e9" + "123456789truncated", "\u00e9" + "123456789"),
     ],
     ids=("ASCII", "UNICODE"),
 )
@@ -2986,13 +2986,13 @@ def test_zarr_update_array_string(srcfilename):
         )
         gdal.FileFromMemBuffer(filename + "/0", open(srcfilename + "/0", "rb").read())
 
-        eta = "\u03B7"
+        eta = "\u03b7"
 
         def update():
             ds = gdal.OpenEx(filename, gdal.OF_MULTIDIM_RASTER | gdal.OF_UPDATE)
             rg = ds.GetRootGroup()
             ar = rg.OpenMDArray(rg.GetMDArrayNames()[0])
-            assert ar.Read() == ["\u00E9"]
+            assert ar.Read() == ["\u00e9"]
             assert ar.Write([eta]) == gdal.CE_None
             assert gdal.GetLastErrorMsg() == ""
 

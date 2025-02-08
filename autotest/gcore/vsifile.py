@@ -1167,7 +1167,7 @@ def test_vsifile_vsimem_truncate_zeroize():
 
     filename = "/vsimem/test.bin"
     f = gdal.VSIFOpenL(filename, "wb+")
-    data = b"\xFF" * 10000
+    data = b"\xff" * 10000
     gdal.VSIFWriteL(data, 1, len(data), f)
     gdal.VSIFTruncateL(f, 0)
     gdal.VSIFSeekL(f, 10000, 0)

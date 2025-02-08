@@ -161,7 +161,7 @@ def test_vsicurl_9():
 
     ds = gdal.Open(
         "/vsicurl/http://download.osgeo.org/gdal/data/gtiff/"
-        "xx\u4E2D\u6587.\u4E2D\u6587"
+        "xx\u4e2d\u6587.\u4e2d\u6587"
     )
     assert ds is not None
 

@@ -924,7 +924,7 @@ def test_ogr_mem_arrow_stream_numpy():
     f.SetField("float32list", "[-1.25,1.25]")
     f.SetField("float64list", "[-1.250123,1.250123]")
     f.SetField("strlist", '["abc","defghi"]')
-    f.SetField("binary", b"\xDE\xAD")
+    f.SetField("binary", b"\xde\xad")
     f.SetGeometryDirectly(ogr.CreateGeometryFromWkt("POINT(1 2)"))
     lyr.CreateFeature(f)
 
@@ -974,7 +974,7 @@ def test_ogr_mem_arrow_stream_numpy():
     assert numpy.array_equal(
         batch["strlist"][1], numpy.array([b"abc", b"defghi"], dtype="|S6")
     )
-    assert batch["binary"][1] == b"\xDE\xAD"
+    assert batch["binary"][1] == b"\xde\xad"
     assert len(batch["wkb_geometry"][1]) == 21
 
     # Test fast FID filtering
@@ -1102,9 +1102,9 @@ def test_ogr_mem_arrow_stream_numpy_memlimit(limited_field):
     f.SetField("float32list", "[-1.25,1.25]")
     f.SetField("float64list", "[-1.250123,1.250123]")
     f.SetField("strlist", '["abc","defghi"]')
-    f.SetField("binary", b"\xDE\xAD")
+    f.SetField("binary", b"\xde\xad")
     if limited_field == "binary_fixed_width":
-        f.SetField("binary_fixed_width", b"\xDE\xAD" * 25)
+        f.SetField("binary_fixed_width", b"\xde\xad" * 25)
     f.SetGeometryDirectly(ogr.CreateGeometryFromWkt("POINT(1 2)"))
     lyr.CreateFeature(f)
 
@@ -1127,7 +1127,7 @@ def test_ogr_mem_arrow_stream_numpy_memlimit(limited_field):
     elif limited_field == "binary":
         f["binary"] = b"x" * 100
     elif limited_field == "binary_fixed_width":
-        f.SetField("binary_fixed_width", b"\xDE\xAD" * 25)
+        f.SetField("binary_fixed_width", b"\xde\xad" * 25)
     elif limited_field == "geometry":
         g = ogr.Geometry(ogr.wkbLineString)
         sizeof_first_point = 21
@@ -1476,7 +1476,7 @@ def test_ogr_mem_write_arrow():
     src_feature.SetField("field_real", 18.4)
     src_feature.SetField("field_string", "abc def")
     src_feature.SetFieldBinary("field_binary", b"\x00\x01")
-    src_feature.SetField("field_binary", b"\x01\x23\x46\x57\x89\xAB\xCD\xEF")
+    src_feature.SetField("field_binary", b"\x01\x23\x46\x57\x89\xab\xcd\xef")
     src_feature.SetField("field_date", "2011/11/11")
     src_feature.SetField("field_time", "14:10:35")
     src_feature.SetField("field_datetime", 2011, 11, 11, 14, 10, 35.123, 0)

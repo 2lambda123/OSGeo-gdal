@@ -757,13 +757,13 @@ def test_jpeg_mask_lsb_order_issue_4351():
 
     src_ds = gdal.GetDriverByName("MEM").Create("", 15, 4, 3)
     src_ds.CreateMaskBand(gdal.GMF_PER_DATASET)
-    src_ds.GetRasterBand(1).GetMaskBand().WriteRaster(7, 2, 2, 1, b"\xFF" * 2)
+    src_ds.GetRasterBand(1).GetMaskBand().WriteRaster(7, 2, 2, 1, b"\xff" * 2)
     tmpfilename = "/vsimem/test_jpeg_mask_lsb_order_issue_4351.jpg"
     assert gdal.GetDriverByName("JPEG").CreateCopy(tmpfilename, src_ds)
     ds = gdal.Open(tmpfilename)
     assert (
         ds.GetRasterBand(1).GetMaskBand().ReadRaster(0, 2, 15, 1)
-        == b"\x00" * 7 + b"\xFF" * 2 + b"\x00" * 6
+        == b"\x00" * 7 + b"\xff" * 2 + b"\x00" * 6
     )
     ds = None
     gdal.GetDriverByName("JPEG").Delete(tmpfilename)
